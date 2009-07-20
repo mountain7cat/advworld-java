@@ -1,0 +1,23 @@
+World File Description:
+
+The world file is split into different sections:
+
+LOCATION
+Entries for all the room you will have in your world. PARENT and CHILDREN keywords are optional
+format: LOCATION <location name> <location type> PARENT <Parent location name> CHILDREN <child location1 name> <child location2 name>...
+
+CONNECTIONS
+Entries for all the connections between two rooms. rooms must have same parent room
+format: CONNECTION <name for one room> <name for the other room>
+
+OBJECTS
+Entries for objects associated with a certain room
+format: OBJECTS <object name> <object type> <room association>
+
+MONSTERS
+Entries for monsters in the game, and where they initialize
+format: MONSTER <monster name> <monster type> <room association>
+
+NPCS
+Entries for NPCS in the game, and where they initialize.
+format: NPC <NPC name> <NPC type> <room association>
