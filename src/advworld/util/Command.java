@@ -20,9 +20,13 @@ public abstract class Command {
 	//All command functions implemeneted below
 	static void go(String arg[]){
 		System.out.println("go called");
-		for(int i = 0; i < arg.length ; i++){
-			System.out.print(arg[i] + " ");
+		if(arg.length <= 1){
+			System.out.println("Need direction");
+		} else {
+			for(int i = 0; i < arg.length ; i++){
+				System.out.print(arg[i] + " ");
+			}
+			System.out.println();
 		}
-		System.out.println();
 	}
 }
