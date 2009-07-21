@@ -13,7 +13,9 @@ public class Mob {
 	 */
 	public Mob(Monster m) {
 		MobNode head = new MobNode(m);
-		tail = null;
+		head.setNext(null);
+		head.setPrev(null);
+		tail = head;
 		size++;
 	}
 	
@@ -47,21 +49,25 @@ public class Mob {
 	 *  used for the "look" command
 	 */
 	public void print_monsters() {
-	    /*monster_t *monster;
-	    int num_monsters_here = num_monsters(mob);
-	    mob_iterator_t *iter = make_mob_iterator(mob);
-
-	    printf("There %s %d monster%s here:\n",
-	            num_monsters_here > 1 ? "are" : "is",
-	            num_monsters(mob),
-	            num_monsters_here > 1 ? "s" : ""
-	            );
-
-	    while((monster = next_monster(iter))) {
-	        printf("\ta %s\n", monster->description);
-	    }
-
-	    delete_mob_iterator(iter);*/
+		MobNode node = head;
+		
+		System.out.print("There ");
+		if (size > 1) {
+			System.out.print("are ");
+		} else {
+			System.out.print("is ");
+		}
+		System.out.print(size + " monster");
+		if (size > 1) {
+			System.out.println("s here:");
+		} else {
+			System.out.println(" here:");
+		}
+		
+		while (node != null) {
+			System.out.println(node.monster().name);
+			node = node.next();
+		}
 	}
 	
 	/**
