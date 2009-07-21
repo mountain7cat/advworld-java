@@ -4,6 +4,7 @@ import java.util.*;
 
 import advworld.level.*;
 import advworld.util.AdvworldException;
+import advworld.util.Command;
 
 public class Game {
 
@@ -12,6 +13,7 @@ public class Game {
 	 */
 	private static World world;
 	private static HashMap<String,Location> locations;
+	private static HashMap<String,Command> commands;
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -34,13 +36,19 @@ public class Game {
 			System.out.print("> ");
 			try {
 				s = br.readLine();
+				String[] tokens = s.split(" ");
+				if(commands.containsKey(tokens[0])){
+					commands.get(tokens[0]).run(new String[]{"a","b"});
+				} else {
+					System.out.println(tokens[0] + " is an invalid command.");
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-
-			//ECHO
-			System.out.println(s);
+				
 		}
 	}
 
@@ -49,6 +57,9 @@ public class Game {
 	 */
 	private static void initialize()throws AdvworldException{
 
+		
+		//load command list
+		commands = Command.intialize();
 		//initialize variables
 		setupWorld("some file path");
 	}
