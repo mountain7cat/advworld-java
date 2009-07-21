@@ -23,7 +23,7 @@ public class MobNode {
 	}
 	
 	/**
-	 * monster() returns the Monster in the MobNode.
+	 * monster() returns the Monster in this MobNode.
 	 * 
 	 * @return the Monster in the MobNode.
 	 */
@@ -32,19 +32,36 @@ public class MobNode {
 	}
 	
 	/**
-	 * next() returns the next MobNode.
+	 * next() returns the next field of this MobNode.
 	 * 
 	 * @return the next MobNode.
 	 */
 	public MobNode next() {
 		return next;
 	}
+	
 	/**
-	 * prev() returns the previous MobNode.
+	 * setNext() sets the next field of this MobNode.
+	 */
+	public void setNext(MobNode node) {
+		next = node;
+		node.prev = this;
+	}
+	
+	/**
+	 * prev() returns the prev field of this MobNode.
 	 * 
 	 * @return the previous MobNode.
 	 */
 	public MobNode prev() {
 		return prev;
+	}
+	
+	/**
+	 * setPrev() sets the prev field of this MobNode.
+	 */
+	public void setPrev(MobNode node) {
+		prev = node;
+		node.next = this;
 	}
 }

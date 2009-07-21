@@ -5,8 +5,9 @@ import advworld.player.*;
 public abstract class Monster {
 	protected Mob theMob;
 
-	protected int HP, MP, level, expGiven; 
-
+	protected int HP, MP, level, expGiven;
+	protected String name, attack, description;
+	protected MobNode node;
 
 	/**
 	 * Does damage to specified player p in the game. The value return by
