@@ -12,12 +12,15 @@ public class Node<T> {
  
     public T data;
     public List<Node<T>> children;
+    private boolean isChildrenNull;
  
     /**
      * Default ctor.
      */
     public Node() {
-        super();
+        children = null;
+        data = null;
+        isChildrenNull = true;
     }
  
     /**
@@ -25,8 +28,9 @@ public class Node<T> {
      * @param data an instance of T.
      */
     public Node(T data) {
-        this();
-        setData(data);
+    	children = null;
+        this.data = data;
+        isChildrenNull = true;
     }
      
     /**
@@ -37,10 +41,11 @@ public class Node<T> {
      * @return the children of Node<T>
      */
     public List<Node<T>> getChildren() {
-        if (this.children == null) {
-            return new ArrayList<Node<T>>();
-        }
-        return this.children;
+    	if (isChildrenNull) {
+    		isChildrenNull = false;
+    		return new ArrayList<Node<T>>();
+    	}
+        return children;
     }
  
     /**
@@ -57,39 +62,38 @@ public class Node<T> {
      * @return the number of immediate children.
      */
     public int getNumberOfChildren() {
-        if (children == null) {
-            return 0;
-        }
+    	if (isChildrenNull) {
+    		isChildrenNull = false;
+    		return 0;
+    	}
         return children.size();
     }
      
     /**
-     * Adds a child to the list of children for this Node<T>. The addition of
-     * the first child will create a new List<Node<T>>.
+     * Adds a child to the list of children for this Node<T>.
      * @param child a Node<T> object to set.
      */
     public boolean addChild(Node<T> child) {
-        if (children == null) {
-            children = new ArrayList<Node<T>>();
-        }
+    	if (isChildrenNull) {
+    		isChildrenNull = false;
+    		children = new ArrayList<Node<T>>();
+    	}
         return children.add(child);
     }
      
     /**
-     * Inserts a Node<T> at the specified position in the child list. Will     * throw an ArrayIndexOutOfBoundsException if the index does not exist.
+     * Inserts a Node<T> at the specified position in the child list. Will     
+     * throw an ArrayIndexOutOfBoundsException if the index does not exist.
      * @param index the position to insert at.
      * @param child the Node<T> object to insert.
      * @throws IndexOutOfBoundsException if thrown.
      */
     public void insertChildAt(int index, Node<T> child) throws IndexOutOfBoundsException {
-        if (index == getNumberOfChildren()) {
-            // this is really an append
-            addChild(child);
-            return;
-        } else {
-            children.get(index); //just to throw the exception, and stop here
-            children.add(index, child);
-        }
+    	if (isChildrenNull) {
+    		isChildrenNull = false;
+    		children = new ArrayList<Node<T>>();
+    	}
+    	children.add(index, child);
     }
      
     /**
@@ -98,11 +102,16 @@ public class Node<T> {
      * @throws IndexOutOfBoundsException if thrown.
      */
     public void removeChildAt(int index) throws IndexOutOfBoundsException {
-        children.remove(index);
+    	try {
+    		children.remove(index);
+    	} catch (NullPointerException e) {
+    		throw new IndexOutOfBoundsException();
+    	}
+        
     }
  
     public T getData() {
-        return this.data;
+        return data;
     }
  
     public void setData(T data) {
