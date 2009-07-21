@@ -161,27 +161,23 @@ public class Mob {
 	 * @param Monster m is the Monster to be deleted
 	 */
 	public void delete(Monster m) {
-
-		/*
-		mob_t *mob = *mob_handle;
-		if (monster != NULL) {
-			mob_node *node = monster->node;
-			if (node->prev != NULL) {			// if not first node
-				node->prev->next = node->next;
-			} else {							// update pointer to first node
-				mob->first = node->next;
+		if (m != null) {
+			MobNode node = m.node;
+			
+			if (node.prev() != null) {	// if not head node
+				node.prev().setNext(node.next());
+			} else {
+				head = node.next();		// update head node
 			}
 			
-			if (node->next != NULL) {			// if not last node
-				node->next->prev = node->prev;
-			} else {							// update pointer to last node
-				mob->last = node->prev;
+			if (node.next() != null) {	// if not tail node
+				node.next().setPrev(node.prev());
+			} else {
+				tail = node.prev();		// update tail node
 			}
-			// free the monster, the node, and decrement the size
-			free(monster);
-			free(node);
-			mob->size--;
-		}*/
-
+			
+			size--;
+		}
 	}
+	
 }
