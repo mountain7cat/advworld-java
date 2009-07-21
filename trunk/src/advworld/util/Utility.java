@@ -15,15 +15,21 @@ import advworld.level.World;
  */
 public class Utility {
 	
-	public static boolean JustWorld(){
-		return true;
+	/**
+	 * prints debug message, only when Game.DEBUG is true would it
+	 * print.
+	 */
+	public static void debug(Object msg){
+		if(Game.DEBUG)
+			print(msg);
 	}
-	public static boolean WorldWithParent(){
-		return true;
+	/*
+	 * wrapper so we don't have to type System.out.println
+	 */
+	public static void print(Object msg){
+		System.out.println(msg);
 	}
-	public static boolean WorldWithParentAndChildren(){
-		return true;
-	}
+	
 	/**
 	 * set up the world in the game with the world description file
 	 * @param worldFilePath The path of the world description file
@@ -51,12 +57,12 @@ public class Utility {
 						//Method m = clas.
 						//World loc = new World(locName);
 						hm.put(locName,loc);
-						if(JustWorld()){
+						if(setupWorld_JustWorld()){
 							toplevel.addChild(loc);
-						}else if(WorldWithParent()){//assumes parent already instantiated
+						}else if(setupWorld_WorldWithParent()){//assumes parent already instantiated
 							parentName = tokens[3];
 							//AllLocations.get()
-						}else if(WorldWithParentAndChildren()){
+						}else if(setupWorld_WorldWithParentAndChildren()){
 							
 						}
 					} else if(tokens[0]=="CONNECTIONS"){
@@ -71,5 +77,13 @@ public class Utility {
 		}
 		return hm;
 	}
-	
+	public static boolean setupWorld_JustWorld(){
+		return true;
+	}
+	public static boolean setupWorld_WorldWithParent(){
+		return true;
+	}
+	public static boolean setupWorld_WorldWithParentAndChildren(){
+		return true;
+	}	
 }
