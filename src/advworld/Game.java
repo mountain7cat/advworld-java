@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.*;
 
 import advworld.level.*;
+import advworld.player.*;
 import advworld.util.*;
 
 public class Game {
@@ -14,11 +15,30 @@ public class Game {
 	private static HashMap<String, Location> AllLocations;
 	private static Location toplevel;
 	private static HashMap<String,Command> commands;
+	public static StandardPlayer thePlayer;
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+	/**
+	 * Prints the src/changelog.txt to the console.
+	 */
+	private static void printChangeLog(){
+	    try {
+	        BufferedReader in = new BufferedReader(new FileReader("src/changelog.txt"));
+	        String str;
+	        System.out.println("----");
+	        while ((str = in.readLine()) != null) {
+	            System.out.println(str);
+	        }
+	        System.out.println("----");
+	        in.close();
+	    } catch (IOException e) {
+	    	System.out.println(e.toString());
+	    }
+	}
+	
 	public static void main(String[] args) {
-
+		
 		try {
 			initialize();
 		} catch (Exception e){
@@ -56,10 +76,26 @@ public class Game {
 	 * Initializes the game
 	 */
 	private static void initialize()throws AdvworldException{
+		//Welcome Message - will parse from a file later
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		System.out.println("~~ Welcome to Adventure Game! ~~");
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		
+		//print Change Log
+		printChangeLog();
+		
+		//initialize player
+		thePlayer = new StandardPlayer();
+		
 		//load command list
 		commands = Command.intialize();
+		
 		//initialize variables
-		AllLocations = Utility.setupWorld("some file path");
+		AllLocations = Utility.setupWorld("src/world.txt");
 		toplevel = AllLocations.get(TOPLEVEL_WORLD);	
+		
+		
 	}
+
+
 }
