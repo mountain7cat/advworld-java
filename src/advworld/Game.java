@@ -12,6 +12,7 @@ public class Game {
 	 * Private parameters for the game
 	 */
 	public static String TOPLEVEL_WORLD = "topLevelWorld";
+	public static boolean DEBUG = true;
 	private static HashMap<String, Location> AllLocations;
 	private static Location toplevel;
 	private static HashMap<String,Command> commands;
@@ -26,14 +27,14 @@ public class Game {
 	    try {
 	        BufferedReader in = new BufferedReader(new FileReader("src/changelog.txt"));
 	        String str;
-	        System.out.println("----");
+	        print("----");
 	        while ((str = in.readLine()) != null) {
-	            System.out.println(str);
+	            print(str);
 	        }
-	        System.out.println("----");
+	        print("----");
 	        in.close();
 	    } catch (IOException e) {
-	    	System.out.println(e.toString());
+	    	print(e.toString());
 	    }
 	}
 	
@@ -42,25 +43,24 @@ public class Game {
 		try {
 			initialize();
 		} catch (Exception e){
-			System.out.println("initialization failed: "+e.getMessage());
+			print("initialization failed: "+e.getMessage());
 			//System.exit(1);
 		}
 
-
 		String s = null;
 		if (args.length != 0) {
-			System.out.println(args.length);
+			print(args.length);
 			System.exit(1);
 		}
 		while(true){
-			System.out.print("> ");
+			print("> ");
 			try {
 				s = br.readLine();
 				String[] tokens = s.split(" ", 2);
 				if(commands.containsKey(tokens[0])){
 					commands.get(tokens[0]).run(tokens);
 				} else {
-					System.out.println(tokens[0] + " is an invalid command.");
+					print(tokens[0] + " is an invalid command.");
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -77,9 +77,9 @@ public class Game {
 	 */
 	private static void initialize()throws AdvworldException{
 		//Welcome Message - will parse from a file later
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		System.out.println("~~ Welcome to Adventure Game! ~~");
-		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		print("~~ Welcome to Adventure Game! ~~");
+		print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		
 		//print Change Log
 		printChangeLog();
@@ -97,5 +97,11 @@ public class Game {
 		
 	}
 
-
+	//being REAL lazy, don't even want to type "Utility."
+	private static void print(Object msg){
+		Utility.print(msg);
+	}
+	private static void debug(Object msg){
+		Utility.debug(msg);
+	}
 }
