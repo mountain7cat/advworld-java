@@ -87,7 +87,6 @@ public abstract class Command {
 			System.out.println("Good Bye!");
 			System.exit(0);
 		} else {
-			// Should search current room for other players/monsters and return status of that person/monster
 			System.out.print("ECHO: ");
 			for(int i = 0; i < arg.length ; i++){
 				System.out.print(arg[i] + " ");
