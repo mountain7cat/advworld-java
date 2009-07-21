@@ -3,11 +3,22 @@ package advworld.monsters;
 import advworld.player.*;
 
 public abstract class Monster {
-	protected Mob theMob;
-
-	protected int HP, MP, level, expGiven;
+	protected int HP, level, exp, freq, dam;
 	protected String name, attack, description;
 	protected MobNode node;
+	
+	public Monster(String myName, String myAttack, int myLevel, int myHP, int damage,
+			int expGiven, int frequency, String myDescription, MobNode myNode) {
+		name = myName;
+		attack = myAttack;
+		level = myLevel;
+		HP = myHP;
+		dam = damage;
+		exp = expGiven;
+		freq = frequency;
+		description = myDescription;
+		node = myNode;
+	}
 
 	/**
 	 * Does damage to specified player p in the game. The value return by
