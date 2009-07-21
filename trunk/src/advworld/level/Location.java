@@ -4,7 +4,7 @@ import java.util.*;
 
 import advworld.util.Node;
 
-public abstract class Location {
+public class Location {
 	
 	private Node<Location> myNode;
 	private Vector<Exit> exits;
