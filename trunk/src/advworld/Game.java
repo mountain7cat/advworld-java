@@ -36,9 +36,9 @@ public class Game {
 			System.out.print("> ");
 			try {
 				s = br.readLine();
-				String[] tokens = s.split(" ");
+				String[] tokens = s.split(" ", 2);
 				if(commands.containsKey(tokens[0])){
-					commands.get(tokens[0]).run(new String[]{"a","b"});
+					commands.get(tokens[0]).run(tokens);
 				} else {
 					System.out.println(tokens[0] + " is an invalid command.");
 				}
