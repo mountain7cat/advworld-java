@@ -27,17 +27,17 @@ public class Game {
 	    try {
 	        BufferedReader in = new BufferedReader(new FileReader("src/changelog.txt"));
 	        String str;
-	        print("----");
+	        println("----");
 	        int lineNumberMax = 25;
 	        int i = 0;
 	        while ((str = in.readLine()) != null && i < lineNumberMax) {
-	            print(str);
+	            println(str);
 	            i++;
 	        }
-	        print("----");
+	        println("----");
 	        in.close();
 	    } catch (IOException e) {
-	    	print(e.toString());
+	    	println(e.toString());
 	    }
 	}
 	
@@ -46,24 +46,24 @@ public class Game {
 		try {
 			initialize();
 		} catch (Exception e){
-			print("initialization failed: "+e.getMessage());
+			println("initialization failed: "+e.getMessage());
 			//System.exit(1);
 		}
 
 		String s = null;
 		if (args.length != 0) {
-			print(args.length);
+			println(args.length);
 			System.exit(1);
 		}
 		while(true){
-			System.out.print("> "); // needs to be system.out.print so you can type after the >
+			print("> "); // needs to be system.out.print so you can type after the >
 			try {
 				s = br.readLine();
 				String[] tokens = s.split(" ", 2);
 				if(commands.containsKey(tokens[0])){
 					commands.get(tokens[0]).run(tokens);
 				} else {
-					print(tokens[0] + " is an invalid command.");
+					println(tokens[0] + " is an invalid command.");
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -80,9 +80,9 @@ public class Game {
 	 */
 	private static void initialize()throws AdvworldException{
 		//Welcome Message - will parse from a file later
-		print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-		print("~~ Welcome to Adventure Game! ~~");
-		print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+		println("~~ Welcome to Adventure Game! ~~");
+		println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 		
 		//print Change Log
 		printChangeLog();
@@ -103,6 +103,9 @@ public class Game {
 	//being REAL lazy, don't even want to type "Utility."
 	private static void print(Object msg){
 		Utility.print(msg);
+	}	
+	private static void println(Object msg){
+		Utility.println(msg);
 	}
 	private static void debug(Object msg){
 		Utility.debug(msg);

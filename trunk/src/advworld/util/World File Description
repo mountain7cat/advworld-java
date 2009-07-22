@@ -12,7 +12,7 @@ format: CONNECTION <name for one room> <name for the other room>
 
 OBJECTS
 Entries for objects associated with a certain room
-format: OBJECTS <object name> <object type> <room association>
+format: OBJECT <object name> <object type> <room association>
 
 MONSTERS
 Entries for monsters in the game, and where they initialize

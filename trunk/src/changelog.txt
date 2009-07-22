@@ -1,6 +1,12 @@
 Change Log:
 
-7/21/09 - 3:40 am - Derrick
+7/22/09 - 4:00 am - Steven (v 1.0.2)
+Changed Utility.print to Utility.println (better description)
+Added Utility.print to print without terminating newline character
+Fixed some warnings
+Including a standard regex array to check world.txt with Utility.setupWorld
+
+7/21/09 - 3:40 am - Derrick (v 1.0.1)
 Added cute welcome sign.
 Updated StandardPlayer to ask for name.
 Commands can be read from prompt now.
