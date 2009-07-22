@@ -1,5 +1,6 @@
 package advworld.util;
 
+@SuppressWarnings("serial")
 public class AdvworldException extends Exception {
 
 	public AdvworldException() {

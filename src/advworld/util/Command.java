@@ -1,7 +1,5 @@
 package advworld.util;
 
-import advworld.player.*;
-import advworld.monsters.*;
 import java.util.*;
 import advworld.Game;
 
@@ -21,7 +19,7 @@ public abstract class Command {
 	
 	public abstract void run(String arg[]);
 	
-	//All command functions implemeneted below
+	//All command functions implemented below
 	private static void go(String arg[]){
 		System.out.println("go called");
 		if(arg.length <= 1){
@@ -66,8 +64,8 @@ public abstract class Command {
 		System.out.println("help called");
 		if(arg.length == 1){
 			System.out.println("List of Commands:");
-			Set s = table.keySet();
-			Iterator iter = s.iterator();
+			Set<String> s = table.keySet();
+			Iterator<String> iter = s.iterator();
 			while(iter.hasNext()){
 				System.out.println(" -" + iter.next());
 			}

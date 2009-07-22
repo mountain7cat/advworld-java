@@ -33,8 +33,8 @@ public abstract class Player {
 	
 	public int status() {
 		System.out.println("Level: " + level);
-		System.out.println("HP:    " + HP + "//" + HP_MAX);
-		System.out.println("MP:    " + MP + "//" + MP_MAX);
+		System.out.println("HP:    " + HP + "/" + HP_MAX);
+		System.out.println("MP:    " + MP + "/" + MP_MAX);
 		System.out.println("Exp:   " + exp);
 		return 0;
 	}
