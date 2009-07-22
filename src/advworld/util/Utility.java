@@ -16,11 +16,11 @@ import advworld.level.Location;
 public class Utility {
 	
 	private static Pattern[] regexExpressions = {
-		Pattern.compile("LOCATION\\s++\\w++\\s++\\w++(?:\\s++PARENT\\s++\\w++)?(?:\\s+CHILDREN(?:\\s++\\w++)++)?"),
-		Pattern.compile("CONNECTION\\s++\\w++\\s++\\w++"),
-		Pattern.compile("OBJECT\\s++\\w++\\s++\\w++\\s++\\w++"),
-		Pattern.compile("MONSTER\\s++\\w++\\s++\\w++\\s++\\w++"),
-		Pattern.compile("NPC\\s++\\w++\\s++\\w++\\s++\\w++"),
+		Pattern.compile("LOCATION(\\s++\\w++){2}(\\s++PARENT\\s++\\w++)?(\\s++CHILDREN(\\s++\\w++)++)?"),
+		Pattern.compile("CONNECTION(\\s++\\w++){2}"),
+		Pattern.compile("OBJECT(\\s++\\w++){3}"),
+		Pattern.compile("MONSTER(\\s++\\w++){3}"),
+		Pattern.compile("NPC(\\s++\\w++){3}"),
 	};
 	
 	private static final int LOCATION = 0;
@@ -64,7 +64,7 @@ public class Utility {
 			String line;
 			while((line=f.readLine())!=null){
 				String[] tokens = line.split(" ");
-				if(regexExpressions[LOCATION].matcher(line).find()){
+				if(regexExpressions[LOCATION].matcher(line).matches()){
 					debug("LOCATION being intiailized...");
 					String locName=tokens[1], locType=tokens[2],parentName;
 					String[] childrenName;
@@ -83,16 +83,16 @@ public class Utility {
 					} else if(setupWorld_WorldWithParentAndChildren()){
 						
 					}
-				} else if(regexExpressions[CONNECTION].matcher(line).find()){
+				} else if(regexExpressions[CONNECTION].matcher(line).matches()){
 					debug("CONNECTION being initialized...");
 					
-				} else if(regexExpressions[OBJECT].matcher(line).find()){
+				} else if(regexExpressions[OBJECT].matcher(line).matches()){
 					debug("OBJECT being initialized...");
 					
-				} else if(regexExpressions[MONSTER].matcher(line).find()){
+				} else if(regexExpressions[MONSTER].matcher(line).matches()){
 					debug("MONSTER being initialized...");
 					
-				} else if(regexExpressions[NPC].matcher(line).find()){
+				} else if(regexExpressions[NPC].matcher(line).matches()){
 					debug("NPC being initialized...");
 					
 				} else throw new AdvworldException("Improper world description: " + line);
