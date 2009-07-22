@@ -53,7 +53,7 @@ public class Game {
 			System.exit(1);
 		}
 		while(true){
-			print("> ");
+			System.out.print("> "); // needs to be system.out.print so you can type after the >
 			try {
 				s = br.readLine();
 				String[] tokens = s.split(" ", 2);
