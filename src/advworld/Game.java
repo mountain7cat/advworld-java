@@ -28,8 +28,11 @@ public class Game {
 	        BufferedReader in = new BufferedReader(new FileReader("src/changelog.txt"));
 	        String str;
 	        print("----");
-	        while ((str = in.readLine()) != null) {
+	        int lineNumberMax = 25;
+	        int i = 0;
+	        while ((str = in.readLine()) != null && i < lineNumberMax) {
 	            print(str);
+	            i++;
 	        }
 	        print("----");
 	        in.close();
