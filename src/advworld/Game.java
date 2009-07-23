@@ -37,7 +37,10 @@ public class Game {
 	            println(str);
 	            i++;
 	        }
+	        println("...");
+	        println("To see full change log, go to changelog.txt");
 	        println("----");
+	        println("");
 	        in.close();
 	    } catch (IOException e) {
 	    	println(e.toString());
@@ -62,7 +65,7 @@ public class Game {
 		println(startlevel.description());
 		
 		while(true){
-			print("> "); // needs to be system.out.print so you can type after the >
+			print("> ");
 			try {
 				s = br.readLine();
 				String[] tokens = s.split(" ", 2);

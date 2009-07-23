@@ -114,7 +114,9 @@ public class Location {
 	 * @return String containing room description
 	 */
 	public String description(){
-		return "no description";
+		Utility.println("Room Name:   " + myName);
+		Utility.println("Connections: " + connections.toString());
+		return "End of Description";
 	}
 	
 	//add exit
