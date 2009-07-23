@@ -44,7 +44,7 @@ public class Game {
 	    }
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		
 		try {
 			initialize();
@@ -98,7 +98,7 @@ public class Game {
 		toplevel = AllLocations.get(TOPLEVEL_WORLD);	
 		
 		//load command list
-		commands = Command.intialize();
+		commands = Command.initialize();
 		
 		//initialize player
 		theParty = new Party(new StandardPlayer(), startlevel);

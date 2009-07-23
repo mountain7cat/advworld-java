@@ -8,7 +8,7 @@ import advworld.player.Player;
 public abstract class Command {
 	
 	private static HashMap<String, Command> table = new HashMap<String,Command>();
-	public static HashMap<String,Command> intialize(){
+	public static HashMap<String,Command> initialize(){
 		//add new commands here
 		table.put("go", new Command(){public void run(String arg[]){go(arg);}});
 		table.put("attack", new Command(){public void run(String arg[]){attack(arg);}});
@@ -22,7 +22,7 @@ public abstract class Command {
 	
 	//All command functions implemented below
 	private static void go(String arg[]){
-		System.out.println("go called");
+		Utility.debug("go called");
 		if(arg.length <= 1){
 			System.out.println("Need direction.");
 		} else {
@@ -35,7 +35,7 @@ public abstract class Command {
 	}
 	
 	private static void attack(String arg[]){
-		System.out.println("attack called");
+		Utility.debug("attack called");
 		if(arg.length <= 1){
 			System.out.println("Need target.");
 		} else {
