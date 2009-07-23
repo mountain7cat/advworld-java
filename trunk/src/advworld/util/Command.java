@@ -15,6 +15,7 @@ public abstract class Command {
 		table.put("status", new Command(){public void run(String arg[]){status(arg);}});
 		table.put("help", new Command(){public void run(String arg[]){help(arg);}});
 		table.put("quit", new Command(){public void run(String arg[]){quit(arg);}});
+		table.put("look", new Command(){public void run(String arg[]){look(arg);}});
 		return table;
 	}
 	
@@ -86,6 +87,20 @@ public abstract class Command {
 	
 	private static void quit(String arg[]){
 		System.out.println("quit called");
+		if(arg.length == 1){
+			System.out.println("Good Bye!");
+			System.exit(0);
+		} else {
+			System.out.print("ECHO: ");
+			for(int i = 0; i < arg.length ; i++){
+				System.out.print(arg[i] + " ");
+			}
+			System.out.println();
+		}
+	}
+	
+	private static void look(String arg[]){
+		System.out.println("look called");
 		if(arg.length == 1){
 			System.out.println("Good Bye!");
 			System.exit(0);
