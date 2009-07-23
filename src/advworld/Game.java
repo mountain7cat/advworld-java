@@ -97,7 +97,7 @@ public class Game {
 		printChangeLog();
 		
 		//initialize variables
-		AllLocations = Utility.setupWorld("src/world.txt");
+		AllLocations = Utility.setupWorld("src/testworld.txt");
 		toplevel = AllLocations.get(TOPLEVEL_WORLD);	
 		
 		//load command list
