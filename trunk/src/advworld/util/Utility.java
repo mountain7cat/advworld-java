@@ -97,10 +97,14 @@ public class Utility {
 						hm.get(tokens[4]).addChild(loc);
 					} else if(setupWorld_WorldWithParentAndChildren(tokens)){
 						debug("world with parent and children");
-						parentName = tokens[3];
-						hm.get(tokens[3]).addChild(loc);
-						for(int i=5;i<tokens.length;i++)
+						parentName = tokens[4];
+						hm.get(tokens[4]).addChild(loc);
+						for(int i=6;i<tokens.length;i++){
+							debug("adding child");
 							loc.addChild(hm.get(tokens[i]));
+							debug("added child");
+						}
+						debug("finshed adding child");
 					} else
 						//shouldn't hit this case
 						throw new AdvworldException("Improper World Description: "+line);

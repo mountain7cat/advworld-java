@@ -1,0 +1,35 @@
+LOCATION Earth World
+LOCATION NorthAmerica Continent
+LOCATION Usa Country
+LOCATION Ca State
+LOCATION Berkeley City
+LOCATION SouthSide Town
+LOCATION Royston Building
+LOCATION Room306 Room
+LOCATION Hall Room
+LOCATION NorthAmerica Continent PARENT Earth CHILDREN USA
+LOCATION Usa Country PARENT NorthAmerica CHILDREN Ca
+LOCATION Ca State PARENT Usa CHILDREN Berkeley
+LOCATION Berkeley City PARENT Ca CHILDREN SouthSide
+LOCATION SouthSide Town PARENT Berkeley CHILDREN Royston
+LOCATION Royston Building PARENT SouthSide CHILDREN Room306
+LOCATION Room306 Room PARENT Royston CHILDREN Hall
+LOCATION Hall Room PARENT Room306 CHILDREN Aarons Derricks Eusebius Bathroom Kitchen
+LOCATION Aarons Room PARENT Hall
+LOCATION Derricks Room PARENT Hall [start]
+LOCATION Eusebius Room PARENT Hall
+LOCATION Bathroom Room PARENT Hall
+LOCATION Kitchen Room PARENT Hall
+CONNECTION Room306 HALL
+CONNECTION Hall Aarons
+CONNECTION Hall Derricks
+CONNECTION Hall Eusebius
+CONNECTION Hall Bathroom
+CONNECTION Hall Kitchen
+CONNECTION Room306 Royston
+CONNECTION Royston SouthSide
+CONNECTION SouthSide Berkeley
+CONNECTION Berkeley CA
+CONNECTION CA USA
+CONNECTION USA NorthAmerica
+CONNECTION NorthAmerica Earth
