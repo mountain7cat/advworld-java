@@ -57,14 +57,16 @@ public class Utility {
 		//create dummy world container first
 		HashMap<String,Location> hm = new HashMap<String,Location>();
 		Location toplevel = new Location(Game.TOPLEVEL_WORLD);
+		boolean startlevelInitialized = false;
+		
 		hm.put(Game.TOPLEVEL_WORLD, toplevel);
 		BufferedReader f;
 		try {
 			f = new BufferedReader(new FileReader(worldFilePath));
 			String line;
 			while((line=f.readLine())!=null){
-				String[] tokens = line.split(" ");
-				if(regexExpressions[LOCATION].matcher(line).matches()){
+				String[] tokens = line.split("\\s");
+				if(regexExpressions[LOCATION].matcher(line).find()){
 					debug("LOCATION being intiailized...");
 					String locName=tokens[1], locType=tokens[2],parentName;
 					String[] childrenName;
@@ -72,9 +74,18 @@ public class Utility {
 					Class<?> clas = Class.forName("advworld.level."+locType);
 					Location loc = (Location)clas.getConstructor(String.class).newInstance(locName);
 					
+					if (tokens[tokens.length-1].equals("[start]")) {
+						if (startlevelInitialized == true) {
+							throw new AdvworldException("Cannot have more than one start location");
+						} else {
+							startlevelInitialized = true;
+							Game.startlevel = loc;
+						}
+					}
 					//Method m = clas.
 					//World loc = new World(locName);
 					hm.put(locName,loc);
+					
 					if(setupWorld_JustWorld()){
 						toplevel.addChild(loc);
 					} else if(setupWorld_WorldWithParent()){//assumes parent already instantiated
@@ -83,16 +94,16 @@ public class Utility {
 					} else if(setupWorld_WorldWithParentAndChildren()){
 						
 					}
-				} else if(regexExpressions[CONNECTION].matcher(line).matches()){
+				} else if(regexExpressions[CONNECTION].matcher(line).find()){
 					debug("CONNECTION being initialized...");
 					
-				} else if(regexExpressions[OBJECT].matcher(line).matches()){
+				} else if(regexExpressions[OBJECT].matcher(line).find()){
 					debug("OBJECT being initialized...");
 					
-				} else if(regexExpressions[MONSTER].matcher(line).matches()){
+				} else if(regexExpressions[MONSTER].matcher(line).find()){
 					debug("MONSTER being initialized...");
 					
-				} else if(regexExpressions[NPC].matcher(line).matches()){
+				} else if(regexExpressions[NPC].matcher(line).find()){
 					debug("NPC being initialized...");
 					
 				} else throw new AdvworldException("Improper world description: " + line);

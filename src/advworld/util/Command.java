@@ -2,6 +2,7 @@ package advworld.util;
 
 import java.util.*;
 import advworld.Game;
+import advworld.player.Player;
 
 
 public abstract class Command {
@@ -47,9 +48,13 @@ public abstract class Command {
 	}
 	
 	private static void status(String arg[]){
-		System.out.println("status called");
+		println("status called");
 		if(arg.length == 1){
-			Game.thePlayer.status();
+			Iterator<Player> iter = Game.theParty.activesIterator();
+			while (iter.hasNext()) {
+				iter.next().status();
+				println("");
+			}
 		} else {
 			// Should search current room for other players/monsters and return status of that person/monster
 			System.out.print("ECHO: ");
@@ -91,6 +96,10 @@ public abstract class Command {
 			}
 			System.out.println();
 		}
-	}	
+	}
+	
+	private static void println(Object msg) {
+		Utility.println(msg);
+	}
 	
 }

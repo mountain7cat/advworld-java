@@ -1,5 +1,12 @@
 Change Log:
 
+7/22/09 - 9:30 pm - Steven (v 1.0.3)
+Shortened regex expressions
+Starting player's location is initialized to the location
+	with [start] tag (changed World File Descriptor)
+Using theParty as static field rather than thePlayer
+Status command prints out the status of whole party
+
 7/22/09 - 4:00 am - Steven (v 1.0.2)
 Changed Utility.print to Utility.println (better description)
 Added Utility.print to print without terminating newline character

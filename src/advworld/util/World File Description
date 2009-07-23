@@ -3,8 +3,8 @@ World File Description:
 The world file is split into different sections:
 
 LOCATION
-Entries for all the room you will have in your world. PARENT and CHILDREN keywords are optional
-format: LOCATION <location name> <location type> PARENT <Parent location name> CHILDREN <child location1 name> <child location2 name>...
+Entries for all the room you will have in your world. PARENT and CHILDREN keywords are optional. [start] at end of line denotes starting location
+format: LOCATION <location name> <location type> PARENT <Parent location name> CHILDREN <child location1 name> <child location2 name> ... ?[start]
 
 CONNECTIONS
 Entries for all the connections between two rooms. rooms must have same parent room

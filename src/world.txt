@@ -1,4 +1,4 @@
 LOCATION world1 World
-LOCATION Room1 Location PARENT world1
+LOCATION Room1 Location PARENT world1 [start]
 LOCATION Room2 Location PARENT world1
 CONNECTION Room1 Room2
