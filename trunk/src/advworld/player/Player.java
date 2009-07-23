@@ -5,7 +5,6 @@ import advworld.monsters.*;
 
 public abstract class Player {
 	
-	protected Location currentLoc;
 	protected Party theParty;
 	
 	protected int HP_MAX, MP_MAX, HP, MP, level, exp; 

@@ -13,10 +13,13 @@ public class Game {
 	 */
 	public static String TOPLEVEL_WORLD = "topLevelWorld";
 	public static boolean DEBUG = true;
+	public static Party theParty;
+	
+	public static Location startlevel;
+	
 	private static HashMap<String, Location> AllLocations;
 	private static Location toplevel;
 	private static HashMap<String,Command> commands;
-	public static StandardPlayer thePlayer;
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -55,6 +58,9 @@ public class Game {
 			println(args.length);
 			System.exit(1);
 		}
+		
+		println(startlevel.description());
+		
 		while(true){
 			print("> "); // needs to be system.out.print so you can type after the >
 			try {
@@ -87,17 +93,17 @@ public class Game {
 		//print Change Log
 		printChangeLog();
 		
-		//initialize player
-		thePlayer = new StandardPlayer();
-		
-		//load command list
-		commands = Command.intialize();
-		
 		//initialize variables
 		AllLocations = Utility.setupWorld("src/world.txt");
 		toplevel = AllLocations.get(TOPLEVEL_WORLD);	
 		
+		//load command list
+		commands = Command.intialize();
 		
+		//initialize player
+		theParty = new Party(new StandardPlayer(), startlevel);
+		
+				
 	}
 
 	//being REAL lazy, don't even want to type "Utility."
