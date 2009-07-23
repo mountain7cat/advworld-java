@@ -1,6 +1,6 @@
 Change Log:
 
-7/25/09 - 4:30 am - Derrick (v 1.0.4)
+7/25/09 - 1:08 pm - Derrick (v 1.0.4)
 @Sam are we using North, s, e, w, up, down? how do you want to parse room descriptions?
    You can change the LOCK parser to include two fields so can lock rooms from both sides. 
    also you might want to switch your conventions to go from room to room. right now you have it true = can go vs. true = lock.
