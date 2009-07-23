@@ -1,5 +1,10 @@
 Change Log:
 
+7/23/2008 - 12:58 am - Sam (v 1.0.4)
+Implemented parsing world file LOCATION and CONNECTIONS
+Made change to Exit class -- it is now Connections and specific direction parameters are removed for more generic extension possiblity later.
+Delete Room.java---finally
+
 7/22/09 - 9:30 pm - Steven (v 1.0.3)
 Shortened regex expressions
 Starting player's location is initialized to the location

@@ -3,13 +3,15 @@ package advworld.level;
 import java.util.*;
 
 import advworld.util.Node;
+import advworld.util.Utility;
 
 public class Location {
 	
 	private Node<Location> myNode;
-	private Vector<Exit> exits;
+	private Vector<Connection> connections;
 	private String myName;
-	private HashMap<String,Location> hm = null;
+
+	private HashMap<String,Location> myChildren = null;
 	
 	public Location(){
 		myNode = new Node<Location>(this);
@@ -55,8 +57,12 @@ public class Location {
 		return myNode;
 	}
 	
-	public String getName(){
+	public String getName() {
 		return myName;
+	}
+
+	public void setName(String myName) {
+		this.myName = myName;
 	}
 	
 	/**
@@ -76,13 +82,13 @@ public class Location {
 	 */
 	public HashMap<String,Location> getChildren(){
 		List<Node<Location>> children = getNode().getChildren();
-		this.hm = new HashMap<String,Location>();//builds the hashmap content at runtime		
+		this.myChildren = new HashMap<String,Location>();//builds the hashmap content at runtime		
 		while(!children.isEmpty()){
 			Location L = children.remove(0).getData();
-			hm.put(L.getName(), L);
+			myChildren.put(L.getName(), L);
 		}
 			
-		return hm;
+		return myChildren;
 	}
 	
 	/**
@@ -112,17 +118,23 @@ public class Location {
 	}
 	
 	//add exit
-	public boolean addExit(Exit e){
-		return exits.add(e);
+	public boolean addExit(Connection e){
+		if(connections==null)
+			connections = new Vector<Connection>();
+		return connections.add(e);
 	}
 	
 	//remove exit
-	public boolean removeExit(Exit e){
-		return exits.remove(e);
+	public boolean removeExit(Connection e){
+		if(connections==null)
+			connections = new Vector<Connection>();
+		return connections.remove(e);
 	}
 	
 	//return a Vector of exits
-	public Vector<Exit> exits(){
-		return exits;	
+	public Vector<Connection> exits(){
+		if(connections==null)
+			connections = new Vector<Connection>();
+		return connections;	
 	}
 }
