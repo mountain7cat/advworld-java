@@ -83,7 +83,7 @@ public class Party {
 		return new Iterator<Player>() {
 			private int next = 0;
 			public boolean hasNext() {
-				return next != sizeofActives || actives[next] != null;
+				return next != sizeofActives && actives[next] != null;
 			}
 
 			public Player next() {
