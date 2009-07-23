@@ -5,6 +5,7 @@ Change Log:
    You can change the LOCK parser to include two fields so can lock rooms from both sides. 
    also you might want to switch your conventions to go from room to room. right now you have it true = can go vs. true = lock.
 Go command functional. You can now move between rooms using room names.
+Look returns potential exits.
 
 7/23/09 - 12:58 am - Sam (v 1.0.4)
 Implemented parsing world file LOCATION and CONNECTIONS
