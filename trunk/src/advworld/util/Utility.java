@@ -18,7 +18,7 @@ public class Utility {
 
 	private static Pattern[] regexExpressions = {
 		Pattern.compile("LOCATION(\\s++\\w++){2}(\\s++PARENT\\s++\\w++)?(\\s++CHILDREN(\\s++\\w++)++)?"),
-		Pattern.compile("CONNECTION(\\s++\\w++){2}"),
+		Pattern.compile("CONNECTION(\\s++\\w++){2}(\\s++LOCK\\s++)?"),
 		Pattern.compile("OBJECT(\\s++\\w++){3}"),
 		Pattern.compile("MONSTER(\\s++\\w++){3}"),
 		Pattern.compile("NPC(\\s++\\w++){3}"),
@@ -106,7 +106,13 @@ public class Utility {
 						throw new AdvworldException("Improper World Description: "+line);
 				} else if(regexExpressions[CONNECTION].matcher(line).find()){
 					debug("CONNECTION being initialized...");
-					Connection c = new Connection(hm.get(tokens[1]), hm.get(tokens[2]));
+					Connection c;
+					if(tokens.length > 3 && tokens[3].equals("LOCK")){
+						debug("locks being initialized...");
+						c = new Connection(hm.get(tokens[1]), hm.get(tokens[2]), false, true);
+					} else {
+						c = new Connection(hm.get(tokens[1]), hm.get(tokens[2]));	
+					}
 					hm.get(tokens[1]).addExit(c);
 					hm.get(tokens[2]).addExit(c);
 				} else if(regexExpressions[OBJECT].matcher(line).find()){

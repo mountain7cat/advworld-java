@@ -1,6 +1,12 @@
 Change Log:
 
-7/23/2008 - 12:58 am - Sam (v 1.0.4)
+7/25/09 - 4:30 am - Derrick (v 1.0.4)
+@Sam are we using North, s, e, w, up, down? how do you want to parse room descriptions?
+   You can change the LOCK parser to include two fields so can lock rooms from both sides. 
+   also you might want to switch your conventions to go from room to room. right now you have it true = can go vs. true = lock.
+Go command functional. You can now move between rooms using room names.
+
+7/23/09 - 12:58 am - Sam (v 1.0.4)
 Implemented parsing world file LOCATION and CONNECTIONS
 Made change to Exit class -- it is now Connections and specific direction parameters are removed for more generic extension possiblity later.
 Delete Room.java---finally

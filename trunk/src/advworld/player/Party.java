@@ -18,6 +18,12 @@ public class Party {
 	private static final int sizeofActives = 3;
 	private static final int noPos = -1;
 	
+	/**
+	 * Party Constructor
+	 * 
+	 * @param leader
+	 * @param location
+	 */
 	public Party(Player leader, Location location) {
 		this.location = location;
 		members = new HashSet<Player>();
@@ -29,6 +35,11 @@ public class Party {
 		leaderStatic = true;
 	}
 	
+	/**
+	 * Add the Player p, to the party
+	 * @param p
+	 * @return false if member already exist
+	 */
 	public boolean addToParty(Player p) {
 		for (int i = 1; i < sizeofActives; i++)
 			if (actives[i] == null) {
@@ -39,16 +50,47 @@ public class Party {
 		return members.add(p);
 	}
 	
+	/**
+	 * Change the staticleader flag
+	 * @param flag
+	 * @return
+	 */
 	public boolean setStaticLeaderFlag (boolean flag) {
 		boolean previous = leaderStatic;
 		leaderStatic = flag;
 		return previous;
 	}
 	
-	public Player leader() {
+	/**
+	 * returns the party leader
+	 * @return
+	 */
+	public Player getleader() {
 		return actives[0];
 	}
 	
+	/**
+	 * returns the party's location
+	 * @return
+	 */
+	public Location getlocation(){
+		return location;
+	}
+	
+	/**
+	 * Changes the party's location to loc
+	 * @param loc
+	 */
+	public void setLocation(Location loc){
+		location = loc;
+	}
+	/**
+	 * changes the player p to the a new position
+	 * @param p
+	 * @param position
+	 * @return
+	 * @throws AdvworldException
+	 */
 	public boolean setMemberToActivePos(Player p, int position) throws AdvworldException {
 		if (member(p)) {
 			int pos = posInActiveParty(p);
@@ -68,10 +110,20 @@ public class Party {
 		} else throw new AdvworldException();
 	}
 	
+	/**
+	 * return true if player is part of the party
+	 * @param p
+	 * @return
+	 */
 	public boolean member(Player p) {
 		return members.contains(p);
 	}
 	
+	/**
+	 * returns the position in the party of the player p
+	 * @param p
+	 * @return
+	 */
 	public int posInActiveParty(Player p) {
 		for (int i = 0; i < sizeofActives; i++) {
 			if (actives[i].equals(p))
@@ -79,6 +131,10 @@ public class Party {
 		} return noPos;
 	}
 	
+	/**
+	 * Creates a player iterator
+	 * @return
+	 */
 	public Iterator<Player> activesIterator() {
 		return new Iterator<Player>() {
 			private int next = 0;

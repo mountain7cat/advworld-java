@@ -1,4 +1,13 @@
 LOCATION world1 World
-LOCATION Room1 Location PARENT world1 [start]
-LOCATION Room2 Location PARENT world1
-CONNECTION Room1 Room2
+LOCATION room1 Location PARENT world1 [start]
+LOCATION room2 Location PARENT world1
+LOCATION room3 Location PARENT world1
+LOCATION room4 Location PARENT world1
+LOCATION room5 Location PARENT world1
+LOCATION room6 Location PARENT world1
+CONNECTION room1 room2
+CONNECTION room2 room3 LOCK
+CONNECTION room3 room4
+CONNECTION room4 room5
+CONNECTION room4 room1
+CONNECTION room5 room6

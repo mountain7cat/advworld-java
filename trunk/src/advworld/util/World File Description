@@ -7,8 +7,8 @@ Entries for all the room you will have in your world. PARENT and CHILDREN keywor
 format: LOCATION <location name> <location type> PARENT <Parent location name> CHILDREN <child location1 name> <child location2 name> ... ?[start]
 
 CONNECTIONS
-Entries for all the connections between two rooms. rooms must have same parent room
-format: CONNECTION <name for one room> <name for the other room>
+Entries for all the connections between two rooms. rooms must have same parent room. LOCK keyword is optional. Omit if unlock. Locks loc1 to loc2
+format: CONNECTION <name for one room> <name for the other room> LOCK 
 
 OBJECTS
 Entries for objects associated with a certain room
