@@ -27,6 +27,10 @@ public class Room extends Location{
 		return super.description()+"This is a Room.";
 	}
 
+	public String lockDescription(){
+		return super.lockedDescription();
+	}
+	
 	public Vector<Path> exits() {
 		return super.exits();
 	}
