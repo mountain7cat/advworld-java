@@ -1,5 +1,9 @@
 Change Log:
 
+7/24/09 3:13AM - Sam (v 1.0.6.1)
+Completed world parsing functionality for EXIT, CONNECTION, and LOCATION.
+textworld.txt was wrong because it was malformed. Fixed that, too.
+
 7/23/09 1:48 pm - Sam (v 1.0.6)
 Change implementation for connection - AGAIN. Back to one way channel, renamed
 to path. Decision was that memory saved wasn't worth the messy implmentation.

@@ -75,11 +75,9 @@ public class Utility {
 				}else if(regexExpressions[OBJECT].matcher(line).find()){
 					setupObject(hm,line);
 				} else if(regexExpressions[MONSTER].matcher(line).find()){
-					debug("MONSTER being initialized...");
-
+					setupMonster(hm,line);
 				} else if(regexExpressions[NPC].matcher(line).find()){
-					debug("NPC being initialized...");
-
+					setupNPC(hm,line);
 				} else throw new AdvworldException("Improper world description: " + line);
 			}
 
@@ -104,7 +102,13 @@ public class Utility {
 		String[] childrenName;
 		
 		Class<?> clas = Class.forName("advworld.level."+locType);
-		Location loc = (Location)(clas.getConstructor(String.class).newInstance(locName));
+		Location loc;
+		if(hm.containsKey(locName)){
+			loc = hm.remove(locName);
+			debug("loc "+loc.getName()+" removed.");
+		}
+		else
+			loc = (Location)(clas.getConstructor(String.class).newInstance(locName));
 		
 		if (tokens[tokens.length-1].equals("[start]")) {
 			if (startlevelInitialized == true) {
@@ -116,7 +120,7 @@ public class Utility {
 			//take out the start label
 			tokens = line.split("\\[start\\]")[0].trim().split("\\s");
 		}
-		debug("loc is "+loc.getName());
+		debug("loc "+loc.getName()+" added.");
 		hm.put(locName,loc);
 		
 		if(setupLocation_JustWorld(tokens)){
@@ -127,18 +131,20 @@ public class Utility {
 			parentName = tokens[4];
 			hm.get(tokens[4]).addChild(loc);
 		} else if(setupLocation_WorldWithParentAndChildren(tokens)){
-			debug("world with parent and children");
-			parentName = tokens[3];
-			hm.get(tokens[3]).addChild(loc);
-			for(int i=5;i<tokens.length;i++)
+			debug("world with parent and children, parent is "+tokens[4]);
+			parentName = tokens[4];
+			hm.get(parentName).addChild(loc);
+			for(int i=6;i<tokens.length;i++){
 				loc.addChild(hm.get(tokens[i]));
+			}
+			debug("end of iteration");
 		} else
 			//shouldn't hit this case
 			throw new AdvworldException("Improper World Description: "+line);
 	}
 	public static void setupConnection(HashMap<String,Location> hm, String line){
 		String[] tokens = line.trim().split("\\s");
-		debug("CONNECTION being initilaized");
+		debug("CONNECTION being initialized: "+tokens[1]+" "+tokens[2]);
 		Path c1 = new Path(hm.get(tokens[1]), hm.get(tokens[2]),false);
 		Path c2 = new Path(hm.get(tokens[2]), hm.get(tokens[1]),false);
 		
@@ -154,15 +160,20 @@ public class Utility {
 	public static void setupObject(HashMap<String,Location> hm,String line){
 		debug("OBJECT being initialized...");
 	}
+	public static void setupNPC(HashMap<String,Location> hm,String line){
+		debug("NPC being initialized...");
+	}
+	public static void setupMonster(HashMap<String,Location> hm,String line){
+		debug("Monster being initialized...");
+	}
 	
-	
-	public static boolean setupLocation_JustWorld(String[] tokens){
+	private static boolean setupLocation_JustWorld(String[] tokens){
 		return tokens.length==3;
 	}
-	public static boolean setupLocation_WorldWithJustParent(String[] tokens){
+	private static boolean setupLocation_WorldWithJustParent(String[] tokens){
 		return tokens.length==5;
 	}
-	public static boolean setupLocation_WorldWithParentAndChildren(String[] tokens){
+	private static boolean setupLocation_WorldWithParentAndChildren(String[] tokens){
 		return tokens.length > 6;
 	}	
 }

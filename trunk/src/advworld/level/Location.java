@@ -111,12 +111,10 @@ public class Location {
 	
 	/**
 	 * description of room returned as String
-	 * @return String containing room description
 	 */
 	public String description(){
-		Utility.println("Room Name:   " + myName);
-		Utility.println("Connections: " + connections.toString());
-		return "End of Description";
+		return "Room Name:   " + myName+"\n"
+			+"Connections: " + connections.toString()+"\n";
 	}
 	
 	//add exit
@@ -132,5 +130,10 @@ public class Location {
 	//return a Vector of exits
 	public Vector<Path> exits(){
 		return connections;	
+	}
+	
+	//equals function, 
+	public boolean equals(Object o){
+		return myName==((Location)o).getName();
 	}
 }

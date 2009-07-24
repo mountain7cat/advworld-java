@@ -28,7 +28,7 @@ public class World extends Location{
 	}
 
 	public String description() {
-		return "This is a world";
+		return super.description()+"This is a world\n";
 	}
 
 	public Vector<Path> exits() {
