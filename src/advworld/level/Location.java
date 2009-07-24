@@ -136,4 +136,12 @@ public class Location {
 	public boolean equals(Object o){
 		return myName==((Location)o).getName();
 	}
+	
+	/**
+	 * used to make the "lock" function generic
+	 * @return
+	 */
+	public String lockedDescription(){
+		return myName + "is locked.";
+	}
 }

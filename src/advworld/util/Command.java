@@ -45,7 +45,7 @@ public abstract class Command {
 							Utility.debug("GO function - Malformed path: FIX IT!!!");
 							return;
 						} else if (p.isLocked()){
-							System.out.println(destination + " is locked.");
+							System.out.println(p.getTo().lockedDescription());
 							System.out.println(Game.theParty.getlocation().description());
 							return;
 						}
