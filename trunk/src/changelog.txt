@@ -1,5 +1,8 @@
 Change Log:
 
+7/24/09 - 5:00 am - Derrick (v 1.0.6.2)
+Fixed go commands and locations.  can now move between locations.  can use world.txt or testworld.txt
+
 7/24/09 3:13AM - Sam (v 1.0.6.1)
 Completed world parsing functionality for EXIT, CONNECTION, and LOCATION.
 textworld.txt was wrong because it was malformed. Fixed that, too.

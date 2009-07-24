@@ -31,29 +31,33 @@ public abstract class Command {
 		} else if(arg.length == 2){
 			Path p;
 			String destination = arg[1];
-			Game.theParty.getlocation().description();
 			Utility.debug(Game.theParty.getlocation().getName());
 			Iterator<Path> paths = Game.theParty.getlocation().exits().iterator();
-			if(Game.theParty.getlocation().getName()==destination){
+			if(Game.theParty.getlocation().getName().equals(destination)){
 				Utility.println("You are already at "+destination);
-				Game.theParty.getlocation().description();
+				System.out.println(Game.theParty.getlocation().description());
 			} else {
 				while(paths.hasNext()){
 					p = paths.next();
-					if(p.getTo().getName()==destination && !p.isLocked()){
-						if(p.getFrom().getName()!=Game.theParty.getlocation().getName()){
+					if(p.getTo().getName().equals(destination)){
+						if(!p.getFrom().getName().equals(Game.theParty.getlocation().getName())){
 							//shouldn't hit this case, where a path's from is not the current location
 							Utility.debug("GO function - Malformed path: FIX IT!!!");
-						} 
+							return;
+						} else if (p.isLocked()){
+							System.out.println(destination + " is locked.");
+							System.out.println(Game.theParty.getlocation().description());
+							return;
+						}
 						//perform moving function
 						Game.theParty.setLocation(p.getTo());
 						Utility.println("You moved from " + p.getFrom().getName() + " to " + p.getTo().getName() + ".");
-						Game.theParty.getlocation().description();
+						System.out.println(Game.theParty.getlocation().description());
 						return;
 					}
 				}
-				Utility.println("No such exit. Can't go to "+destination);
-				Game.theParty.getlocation().description();
+				Utility.println(destination + " is not an exit.");
+				System.out.println(Game.theParty.getlocation().description());
 			}
 		} else {
 			System.out.println("Too many arguments.");
@@ -134,7 +138,7 @@ public abstract class Command {
 	private static void look(String arg[]){
 		System.out.println("look called");
 		if(arg.length == 1){
-			Game.theParty.getlocation().description();
+			System.out.println(Game.theParty.getlocation().description());
 		} else {
 			// used to look at other objects or players
 			System.out.print("ECHO: ");

@@ -25,10 +25,10 @@ public class Continent extends Location {
 
 	public String description() {
 		return super.description()+
-			"This is a Continent\n";
+			"This is a Continent";
 	}
 
 	public Vector<Path> exits() {
-		return null;
+		return super.exits();
 	}
 }

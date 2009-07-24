@@ -12,7 +12,7 @@ public class Game {
 	 * Private parameters for the game
 	 */
 	public static String TOPLEVEL_WORLD = "topLevelWorld";
-	public static boolean DEBUG = true;
+	public static boolean DEBUG = false;
 	public static Party theParty;
 	
 	public static Location startlevel;
@@ -31,7 +31,7 @@ public class Game {
 	        BufferedReader in = new BufferedReader(new FileReader("src/changelog.txt"));
 	        String str;
 	        println("----");
-	        int lineNumberMax = 25;
+	        int lineNumberMax = 10;
 	        int i = 0;
 	        while ((str = in.readLine()) != null && i < lineNumberMax) {
 	            println(str);

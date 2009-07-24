@@ -113,8 +113,8 @@ public class Location {
 	 * description of room returned as String
 	 */
 	public String description(){
-		return "Room Name:   " + myName+"\n"
-			+"Connections: " + connections.toString()+"\n";
+		return "Room Name:   " + myName + "\n" +
+				"Exits:  " + connections.toString();
 	}
 	
 	//add exit
