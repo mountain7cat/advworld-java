@@ -1,13 +1,19 @@
 Change Log:
 
-7/25/09 - 4:46 pm - Derrick (v 1.0.5.1)
+7/23/09 1:48 pm - Sam (v 1.0.6)
+Change implementation for connection - AGAIN. Back to one way channel, renamed
+to path. Decision was that memory saved wasn't worth the messy implmentation.
+
+Added keyword to World Description EXIT to differentiate between CONNECTIONS and
+one way path.
+
+Refactored setupXXXX methods to allow future usage.
+
+7/23/09 - 4:46 pm - Derrick (v 1.0.5.1)
 Added some new location classes. Made a "world" in the testworld.txt. formats could be wrong (?).
 Initializes to testworld.txt. Right now it does not initialize... advworld.util.utility.setupworld needs to be looked at.
 
-7/25/09 - 1:08 pm - Derrick (v 1.0.5)
-@Sam are we using North, s, e, w, up, down? how do you want to parse room descriptions?
-   You can change the LOCK parser to include two fields so can lock rooms from both sides. 
-   also you might want to switch your conventions to go from room to room. right now you have it true = can go vs. true = lock.
+7/23/09 - 1:08 pm - Derrick (v 1.0.5)
 Go command functional. You can now move between rooms using room names.
 Look returns potential exits.
 

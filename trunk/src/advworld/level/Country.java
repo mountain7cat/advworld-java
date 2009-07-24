@@ -25,7 +25,7 @@ public class Country extends Location{
 		return "This is a Country";
 	}
 
-	public Vector<Connection> exits() {
+	public Vector<Path> exits() {
 		return null;
 	}
 }

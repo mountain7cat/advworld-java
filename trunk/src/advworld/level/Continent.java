@@ -25,7 +25,7 @@ public class Continent extends Location {
 		return "This is a Continent";
 	}
 
-	public Vector<Connection> exits() {
+	public Vector<Path> exits() {
 		return null;
 	}
 }
