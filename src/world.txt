@@ -1,13 +1,15 @@
 LOCATION world1 World
-LOCATION room1 Location PARENT world1 [start]
-LOCATION room2 Location PARENT world1
-LOCATION room3 Location PARENT world1
-LOCATION room4 Location PARENT world1
-LOCATION room5 Location PARENT world1
-LOCATION room6 Location PARENT world1
-CONNECTION room1 room2
-CONNECTION room2 room3 LOCK
-CONNECTION room3 room4
-CONNECTION room4 room5
-CONNECTION room4 room1
-CONNECTION room5 room6
+LOCATION house Location PARENT world1
+LOCATION school Location PARENT world1
+LOCATION bedroom Room PARENT house [start]
+LOCATION hall Location PARENT house
+LOCATION kitchen Location PARENT house
+LOCATION soda Location PARENT school
+LOCATION room271 Location PARENT school
+LOCATION closet Location PARENT school
+CONNECTION bedroom hall
+CONNECTION hall kitchen
+CONNECTION hall house
+CONNECTION house soda
+CONNECTION soda room271
+CONNECTION room271 closet

@@ -25,10 +25,10 @@ public class City extends Location{
 
 	public String description() {
 		return super.description()+
-			"This is a City\n";
+			"This is a City";
 	}
 
 	public Vector<Path> exits() {
-		return null;
+		return super.exits();
 	}
 }

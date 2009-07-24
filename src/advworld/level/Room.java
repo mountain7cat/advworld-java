@@ -24,10 +24,10 @@ public class Room extends Location{
 	}
 
 	public String description() {
-		return super.description()+"This is a Room\n";
+		return super.description()+"This is a Room.";
 	}
 
 	public Vector<Path> exits() {
-		return null;
+		return super.exits();
 	}
 }

@@ -28,10 +28,10 @@ public class World extends Location{
 	}
 
 	public String description() {
-		return super.description()+"This is a world\n";
+		return super.description()+"This is a world";
 	}
 
 	public Vector<Path> exits() {
-		return null;
+		return super.exits();
 	}
 }

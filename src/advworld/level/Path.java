@@ -53,12 +53,18 @@ public class Path {
 		return locked;
 	}
 	
+	public String toString(){
+		return to.getName()+(isLocked()?" - It is locked":"");
+	}
+	/*
 	// toString method
 	public String toString(){
 		return "Exit from "+from.getName()+" to "+to.getName()+(isLocked()?". It is locked.":".");
 	}
+	*/
 	
 	public boolean equals(Object o){
 		return ((Path)o).getFrom().equals(from) && ((Path)o).getTo().equals(to);
 	}
+	
 }

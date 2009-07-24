@@ -24,10 +24,10 @@ public class Town extends Location{
 	}
 
 	public String description() {
-		return super.description()+"This is a Town\n";
+		return super.description()+"This is a Town";
 	}
 
 	public Vector<Path> exits() {
-		return null;
+		return super.exits();
 	}
 }

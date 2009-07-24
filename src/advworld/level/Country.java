@@ -25,10 +25,10 @@ public class Country extends Location{
 
 	public String description() {
 		return super.description()+
-			"This is a Country\n";
+			"This is a Country";
 	}
 
 	public Vector<Path> exits() {
-		return null;
+		return super.exits();
 	}
 }
