@@ -25,7 +25,7 @@ public class Room extends Location{
 		return "This is a Room";
 	}
 
-	public Vector<Connection> exits() {
+	public Vector<Path> exits() {
 		return null;
 	}
 }

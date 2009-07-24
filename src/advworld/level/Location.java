@@ -8,7 +8,7 @@ import advworld.util.Utility;
 public class Location {
 	
 	private Node<Location> myNode;
-	private Vector<Connection> connections;
+	private Vector<Path> connections = new Vector<Path>();
 	private String myName;
 
 	private HashMap<String,Location> myChildren = null;
@@ -120,23 +120,17 @@ public class Location {
 	}
 	
 	//add exit
-	public boolean addExit(Connection e){
-		if(connections==null)
-			connections = new Vector<Connection>();
+	public boolean addExit(Path e){
 		return connections.add(e);
 	}
 	
 	//remove exit
-	public boolean removeExit(Connection e){
-		if(connections==null)
-			connections = new Vector<Connection>();
+	public boolean removeExit(Path e){
 		return connections.remove(e);
 	}
 	
 	//return a Vector of exits
-	public Vector<Connection> exits(){
-		if(connections==null)
-			connections = new Vector<Connection>();
+	public Vector<Path> exits(){
 		return connections;	
 	}
 }

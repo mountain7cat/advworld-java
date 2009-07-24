@@ -25,7 +25,7 @@ public class City extends Location{
 		return "This is a City";
 	}
 
-	public Vector<Connection> exits() {
+	public Vector<Path> exits() {
 		return null;
 	}
 }

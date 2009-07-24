@@ -25,7 +25,7 @@ public class State extends Location{
 		return "This is a State";
 	}
 
-	public Vector<Connection> exits() {
+	public Vector<Path> exits() {
 		return null;
 	}
 }

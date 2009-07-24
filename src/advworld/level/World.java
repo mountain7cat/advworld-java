@@ -31,7 +31,7 @@ public class World extends Location{
 		return "This is a world";
 	}
 
-	public Vector<Connection> exits() {
+	public Vector<Path> exits() {
 		return null;
 	}
 }
