@@ -3,6 +3,8 @@ package advworld.level;
 import java.util.Iterator;
 import java.util.Vector;
 
+import advworld.util.Utility;
+
 public class City extends Location{
 
 	public City(String name){
@@ -22,7 +24,8 @@ public class City extends Location{
 	}
 
 	public String description() {
-		return "This is a City";
+		return super.description()+
+			"This is a City\n";
 	}
 
 	public Vector<Path> exits() {

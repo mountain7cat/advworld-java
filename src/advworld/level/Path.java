@@ -18,7 +18,6 @@ public class Path {
 		this.from = from;
 		this.to = to;
 		this.locked = false;
-		this.from.addExit(this);
 	}
 	
 	/*
@@ -28,7 +27,6 @@ public class Path {
 		this.from = from;
 		this.to = to;
 		this.locked = locked;
-		this.from.addExit(this);
 	}
 	
 	/*
@@ -57,6 +55,10 @@ public class Path {
 	
 	// toString method
 	public String toString(){
-		return "Exit from"+from.getName()+" to "+to.getName()+(isLocked()?". It is locked.":".");
+		return "Exit from "+from.getName()+" to "+to.getName()+(isLocked()?". It is locked.":".");
+	}
+	
+	public boolean equals(Object o){
+		return ((Path)o).getFrom().equals(from) && ((Path)o).getTo().equals(to);
 	}
 }

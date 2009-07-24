@@ -2,7 +2,8 @@ package advworld.util;
 
 import java.util.*;
 import advworld.Game;
-import advworld.level.Connection;
+import advworld.level.Location;
+import advworld.level.Path;
 import advworld.player.Player;
 
 
@@ -23,45 +24,37 @@ public abstract class Command {
 	public abstract void run(String arg[]);
 	
 	//All command functions implemented below
-	private static void go(String arg[]){
+	private static void go(String arg[]) {
 		Utility.debug("go called");
 		if(arg.length <= 1){
 			System.out.println("Need direction.");
 		} else if(arg.length == 2){
-			Vector<Connection> connections = Game.theParty.getlocation().exits();
-			for(int i = 0; i < connections.size(); i++){
-				Connection exit = connections.get(i);
-				//Utility.debug("Looking in " + exit.toString());
-				//Utility.debug("arg[1] is " + arg[1]);
-				//Utility.debug("loc1 is " + exit.getLoc1().getName() + ". loc2 is " + exit.getLoc2().getName());
-				String destination = arg[1];
-				//Utility.debug("destination is " + destination);
-				String loc1Name = exit.getLoc1().getName();
-				String loc2Name = exit.getLoc2().getName();
-				if(destination.equals(loc2Name) && !destination.equals(Game.theParty.getlocation().getName())){
-					if(!exit.isLoc1_to_loc2()){
-						System.out.println(exit.getLoc2().getName() + " is locked.");
-						Game.theParty.getlocation().description();
-						return;
-					}
-					Game.theParty.setLocation(exit.getLoc2());
-					System.out.println("You moved from " + exit.getLoc1().getName() + " to " + exit.getLoc2().getName() + ".");
-					Game.theParty.getlocation().description();
-					return;
-				} else if (destination.equals(loc1Name) && !destination.equals(Game.theParty.getlocation().getName())){
-					if(!exit.isLoc2_to_loc1()){
-						System.out.println(exit.getLoc1().getName() + " is locked.");
-						Game.theParty.getlocation().description();
-						return;
-					}
-					Game.theParty.setLocation(exit.getLoc1());
-					System.out.println("You moved from " + exit.getLoc2().getName() + " to " + exit.getLoc1().getName() + ".");
-					Game.theParty.getlocation().description();
-					return;					
-				}
-			}
-			System.out.println(arg[1] + " is not a valid room.");
+			Path p;
+			String destination = arg[1];
 			Game.theParty.getlocation().description();
+			Utility.debug(Game.theParty.getlocation().getName());
+			Iterator<Path> paths = Game.theParty.getlocation().exits().iterator();
+			if(Game.theParty.getlocation().getName()==destination){
+				Utility.println("You are already at "+destination);
+				Game.theParty.getlocation().description();
+			} else {
+				while(paths.hasNext()){
+					p = paths.next();
+					if(p.getTo().getName()==destination && !p.isLocked()){
+						if(p.getFrom().getName()!=Game.theParty.getlocation().getName()){
+							//shouldn't hit this case, where a path's from is not the current location
+							Utility.debug("GO function - Malformed path: FIX IT!!!");
+						} 
+						//perform moving function
+						Game.theParty.setLocation(p.getTo());
+						Utility.println("You moved from " + p.getFrom().getName() + " to " + p.getTo().getName() + ".");
+						Game.theParty.getlocation().description();
+						return;
+					}
+				}
+				Utility.println("No such exit. Can't go to "+destination);
+				Game.theParty.getlocation().description();
+			}
 		} else {
 			System.out.println("Too many arguments.");
 			System.out.print("ECHO: ");

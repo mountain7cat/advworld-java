@@ -53,7 +53,8 @@ public class Game {
 			initialize();
 		} catch (Exception e){
 			println("initialization failed: "+e.getMessage());
-			//System.exit(1);
+			e.printStackTrace();
+			System.exit(1);
 		}
 
 		String s = null;
@@ -62,6 +63,7 @@ public class Game {
 			System.exit(1);
 		}
 		
+		println(startlevel==null);
 		println(startlevel.description());
 		
 		while(true){

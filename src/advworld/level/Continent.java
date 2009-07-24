@@ -3,6 +3,8 @@ package advworld.level;
 import java.util.Iterator;
 import java.util.Vector;
 
+import advworld.util.Utility;
+
 public class Continent extends Location {
 
 	public Continent(String name){
@@ -22,7 +24,8 @@ public class Continent extends Location {
 	}
 
 	public String description() {
-		return "This is a Continent";
+		return super.description()+
+			"This is a Continent\n";
 	}
 
 	public Vector<Path> exits() {
