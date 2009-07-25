@@ -1,8 +1,8 @@
-package things;
+package advworld.objects;
 
 import advworld.level.Location;
 
-public class Book extends Thing{
+public class Book extends Objects{
 
 	private String myName;
 	private Location myLocation;
