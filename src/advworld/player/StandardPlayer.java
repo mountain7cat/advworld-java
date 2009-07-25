@@ -8,8 +8,6 @@ import advworld.level.Location;
 
 public class StandardPlayer extends Player {
 	
-	protected String name;
-
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	
 	public StandardPlayer() {
@@ -28,11 +26,10 @@ public class StandardPlayer extends Player {
 		exp = 0;
 	}
 	
-	public int status() {
+	public void status() {
 		System.out.println("Name:  " + name);
 		super.status();
 		// do other stuff
-		return 0;
 	}
 
 }

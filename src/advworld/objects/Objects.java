@@ -4,20 +4,20 @@ import advworld.level.*;
 
 public abstract class Objects {
 	
-	private String myName;
-	private Location myLocation;
-	private String myDescription;
+	protected String myName;
+	protected Location myLocation;
+	protected String myDescription;
 	
-	public Objects(){
-		myName = null;
-		myLocation = null;
-		myDescription = null;
-	}
+	protected boolean pickUpAble;
+	
+	protected String type;
 	
 	public Objects(String name, Location loc, String desc){
 		myName = name;
 		myLocation = loc;
 		myDescription = desc;
+		loc.addObject(this);
+		pickUpAble = false;
 	}
 	
 	public String getName(){
@@ -28,8 +28,19 @@ public abstract class Objects {
 		return myLocation;
 	}
 	
-	public String myDescription(){
+	public String getDescription(){
 		return myDescription;
 	}
 	
+	public String getType(){
+		return type;
+	}
+	
+	public boolean isType(String type){
+		return this.type.equals(type);
+	}
+	
+	public boolean isPickUpAble(){
+		return pickUpAble;
+	}
 }

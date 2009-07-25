@@ -1,5 +1,12 @@
 Change Log:
 
+7/25/09 - 4:41 am - Derrick (v 1.0.8)
+
+Yeah yeah i know its late. great america in like 4 hours. lol.  added some new commands.  added Objects (it is plural!!!!!!) class.
+There is a book in the startlevel of the game.  u can use "look" to see whats in the room. "look at" the view object descriptions.
+"take" to take the object. and "read" to read the object if its a book (u must have it in your inventory). "inventory" to view inventory.
+cya later.
+
 7/24/09 - 7:20 pm - Derrick (v 1.0.7)
 Added new Thing class. Made a book class that extends thing.  need to figure out how use want to use commands on things.
 maybe use the look command or pickup command? need to figure out how to tag them to locations too. add a new hashmap for locations?

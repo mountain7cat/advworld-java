@@ -2,8 +2,7 @@ package advworld;
 import java.io.*;
 import java.util.*;
 
-import things.*;
-
+import advworld.objects.*;
 import advworld.level.*;
 import advworld.objects.Book;
 import advworld.player.*;
@@ -73,7 +72,7 @@ public class Game {
 			print("> ");
 			try {
 				s = br.readLine();
-				String[] tokens = s.split(" ", 2);
+				String[] tokens = s.split(" ",2);
 				if(commands.containsKey(tokens[0])){
 					commands.get(tokens[0]).run(tokens);
 				} else {
@@ -112,11 +111,11 @@ public class Game {
 		theParty = new Party(new StandardPlayer(), startlevel);
 		
 		//initialize things
-		initializeThings();
+		initializeObjects();
 				
 	}
 	
-	private static void initializeThings(){
+	private static void initializeObjects(){
 		Book machine = new Book("Computer Organization and Design", startlevel, "Book used for CS61c", "blah blah blah... more cs stuff...");
 	}
 
