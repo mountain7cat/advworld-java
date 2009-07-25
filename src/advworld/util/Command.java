@@ -1,9 +1,11 @@
 package advworld.util;
 
+import java.io.*;
 import java.util.*;
 import advworld.Game;
 import advworld.level.Location;
 import advworld.level.Path;
+import advworld.player.Party;
 import advworld.player.Player;
 
 
@@ -39,7 +41,7 @@ public abstract class Command {
 			} else {
 				while(paths.hasNext()){
 					p = paths.next();
-					if(p.getTo().getName().equals(destination)){
+					if(p.getTo().getName().equals(destination) || p.getTo().getTypeName().equals(destination)){
 						if(!p.getFrom().getName().equals(Game.theParty.getlocation().getName())){
 							//shouldn't hit this case, where a path's from is not the current location
 							Utility.debug("GO function - Malformed path: FIX IT!!!");
@@ -83,7 +85,7 @@ public abstract class Command {
 	}
 	
 	private static void status(String arg[]){
-		println("status called");
+		Utility.debug("status called");
 		if(arg.length == 1){
 			Iterator<Player> iter = Game.theParty.activesIterator();
 			while (iter.hasNext()) {
@@ -103,7 +105,7 @@ public abstract class Command {
 	}	
 	
 	private static void help(String arg[]){
-		System.out.println("help called");
+		Utility.debug("help called");
 		if(arg.length == 1){
 			System.out.println("List of Commands:");
 			Set<String> s = table.keySet();
@@ -122,7 +124,7 @@ public abstract class Command {
 	}
 	
 	private static void quit(String arg[]){
-		System.out.println("quit called");
+		Utility.debug("quit called");
 		if(arg.length == 1){
 			System.out.println("Good Bye!");
 			System.exit(0);
@@ -136,7 +138,7 @@ public abstract class Command {
 	}
 	
 	private static void look(String arg[]){
-		System.out.println("look called");
+		Utility.debug("look called");
 		if(arg.length == 1){
 			System.out.println(Game.theParty.getlocation().description());
 		} else {
@@ -148,6 +150,7 @@ public abstract class Command {
 			System.out.println();
 		}
 	}
+	
 	
 	private static void println(Object msg) {
 		Utility.println(msg);

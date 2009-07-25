@@ -2,6 +2,8 @@ package advworld;
 import java.io.*;
 import java.util.*;
 
+import things.*;
+
 import advworld.level.*;
 import advworld.player.*;
 import advworld.util.*;
@@ -108,7 +110,13 @@ public class Game {
 		//initialize player
 		theParty = new Party(new StandardPlayer(), startlevel);
 		
+		//initialize things
+		initializeThings();
 				
+	}
+	
+	private static void initializeThings(){
+		Book machine = new Book("Computer Organization and Design", startlevel, "Book used for CS61c", "blah blah blah... more cs stuff...");
 	}
 
 	//being REAL lazy, don't even want to type "Utility."

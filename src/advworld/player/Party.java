@@ -77,6 +77,13 @@ public class Party {
 		return location;
 	}
 	
+	public Set<Player> getMembers(){
+		return members;
+	}
+	
+	public Player[] getActives(){
+		return actives;
+	}
 	/**
 	 * Changes the party's location to loc
 	 * @param loc
@@ -162,4 +169,7 @@ public class Party {
 		Utility.println(msg);
 	}
 	
+	public boolean getLeaderStatic(){
+		return leaderStatic;
+	}
 }

@@ -7,6 +7,8 @@ import advworld.util.Utility;
 
 public class Continent extends Location {
 
+	private String type = "Continent";
+	
 	public Continent(String name){
 		super(name);
 	}
@@ -24,11 +26,14 @@ public class Continent extends Location {
 	}
 
 	public String description() {
-		return super.description()+
-			"This is a Continent";
+		return super.description();
 	}
 
 	public Vector<Path> exits() {
 		return super.exits();
+	}
+	
+	public String getType(){
+		return type;
 	}
 }

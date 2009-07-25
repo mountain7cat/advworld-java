@@ -10,6 +10,9 @@ public class Location {
 	private Node<Location> myNode;
 	private Vector<Path> connections = new Vector<Path>();
 	private String myName;
+	private String[] levels = {"Room", "Building", "Town", "City", "State", "Country", "Continent", "World"};
+	
+	private String type = "Location";
 
 	private HashMap<String,Location> myChildren = null;
 	
@@ -60,7 +63,15 @@ public class Location {
 	public String getName() {
 		return myName;
 	}
-
+	
+	public String getType(){
+		return type;
+	}
+	
+	public String getTypeName(){
+		return this.getType()+ " " + myName;
+	}
+	
 	public void setName(String myName) {
 		this.myName = myName;
 	}
@@ -113,7 +124,7 @@ public class Location {
 	 * description of room returned as String
 	 */
 	public String description(){
-		return "Room Name:   " + myName + "\n" +
+		return this.getType() + " Name:   " + myName + "\n" +
 				"Exits:  " + connections.toString();
 	}
 	
@@ -143,5 +154,20 @@ public class Location {
 	 */
 	public String lockedDescription(){
 		return myName + "is locked.";
+	}
+	
+	/**
+	 * returns the level number of the location type 0 = room, 1 = building, etc.
+	 * @param locationType
+	 * @return
+	 */
+	public int level(String locationType){
+		int i;
+		for(i = 0; i < levels.length; i++){
+			if(locationType.equals(levels[i])){
+				break;
+			}
+		}
+		return i;
 	}
 }
