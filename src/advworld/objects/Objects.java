@@ -1,20 +1,20 @@
-package things;
+package advworld.objects;
 
 import advworld.level.*;
 
-public class Thing {
+public abstract class Objects {
 	
 	private String myName;
 	private Location myLocation;
 	private String myDescription;
 	
-	public Thing(){
+	public Objects(){
 		myName = null;
 		myLocation = null;
 		myDescription = null;
 	}
 	
-	public Thing(String name, Location loc, String desc){
+	public Objects(String name, Location loc, String desc){
 		myName = name;
 		myLocation = loc;
 		myDescription = desc;

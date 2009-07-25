@@ -5,6 +5,7 @@ import java.util.*;
 import things.*;
 
 import advworld.level.*;
+import advworld.objects.Book;
 import advworld.player.*;
 import advworld.util.*;
 
