@@ -11,6 +11,8 @@ import advworld.util.Utility;
  */
 public class World extends Location{
 		
+	private String type = "World";
+	
 	public World(String name){
 		super(name);
 	}
@@ -28,10 +30,14 @@ public class World extends Location{
 	}
 
 	public String description() {
-		return super.description()+"This is a world";
+		return super.description();
 	}
 
 	public Vector<Path> exits() {
 		return super.exits();
+	}
+	
+	public String getType(){
+		return type;
 	}
 }

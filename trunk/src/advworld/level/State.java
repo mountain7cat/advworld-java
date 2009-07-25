@@ -7,6 +7,8 @@ import advworld.util.Utility;
 
 public class State extends Location{
 
+	private String type = "State";
+	
 	public State(String name){
 		super(name);
 	}
@@ -24,10 +26,14 @@ public class State extends Location{
 	}
 
 	public String description() {
-		return super.description()+"This is a State";
+		return super.description();
 	}
 
 	public Vector<Path> exits() {
 		return super.exits();
+	}
+	
+	public String getType(){
+		return type;
 	}
 }

@@ -1,5 +1,9 @@
 Change Log:
 
+7/24/09 - 7:20 pm - Derrick (v 1.0.7)
+Added new Thing class. Made a book class that extends thing.  need to figure out how use want to use commands on things.
+maybe use the look command or pickup command? need to figure out how to tag them to locations too. add a new hashmap for locations?
+
 7/24/09 - 5:00 am - Derrick (v 1.0.6.2)
 Fixed go commands and locations.  can now move between locations.  can use world.txt or testworld.txt
 

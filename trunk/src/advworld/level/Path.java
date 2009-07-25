@@ -54,7 +54,7 @@ public class Path {
 	}
 	
 	public String toString(){
-		return to.getName()+(isLocked()?to.lockedDescription():"");
+		return to.getTypeName()+(isLocked()?to.lockedDescription():"");
 	}
 	/*
 	// toString method

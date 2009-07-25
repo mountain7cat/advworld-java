@@ -7,6 +7,8 @@ import advworld.util.Utility;
 
 public class Room extends Location{
 	
+	private String type = "Room";
+	
 	public Room(String name){
 		super(name);
 	}
@@ -24,7 +26,7 @@ public class Room extends Location{
 	}
 
 	public String description() {
-		return super.description()+"This is a Room.";
+		return super.description();
 	}
 
 	public String lockDescription(){
@@ -33,5 +35,9 @@ public class Room extends Location{
 	
 	public Vector<Path> exits() {
 		return super.exits();
+	}
+	
+	public String getType(){
+		return type;
 	}
 }
