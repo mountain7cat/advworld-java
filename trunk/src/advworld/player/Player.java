@@ -1,13 +1,22 @@
 package advworld.player;
 
+import java.util.*;
+
 import advworld.level.Location;
 import advworld.monsters.*;
+import advworld.objects.Objects;
 
 public abstract class Player {
 	
 	protected Party theParty;
 	
 	protected int HP_MAX, MP_MAX, HP, MP, level, exp; 
+	
+	protected String name;
+	
+	protected Vector<Objects> inventory = new Vector<Objects>();
+	
+	protected Objects holding;
 	
 	
 	/**
@@ -20,6 +29,20 @@ public abstract class Player {
 		return level;
 	}
 	
+	public void addItem(Objects item){
+		inventory.add(item);
+		System.out.println("Added " + item.getName() + " to inventory.");
+	}
+	
+	public void removeItem(Objects item){
+		inventory.remove(item);
+		System.out.println("Removed " + item.getName() + " from inventory.");
+	}
+	
+	public Vector<Objects> getInventory(){
+		return inventory;
+	}
+	
 	public int dawdle() {
 		// do something to theParty.location;
 		return 0;
@@ -30,11 +53,10 @@ public abstract class Player {
 		return 0;
 	}
 	
-	public int status() {
+	public void status() {
 		System.out.println("Level: " + level);
 		System.out.println("HP:    " + HP + "/" + HP_MAX);
 		System.out.println("MP:    " + MP + "/" + MP_MAX);
 		System.out.println("Exp:   " + exp);
-		return 0;
 	}
 }
