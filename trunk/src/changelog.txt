@@ -2,25 +2,31 @@ Change Log:
 
 7/25/09 - 4:41 am - Derrick (v 1.0.8)
 
-Yeah yeah i know its late. great america in like 4 hours. lol.  added some new commands.  added Objects (it is plural!!!!!!) class.
-There is a book in the startlevel of the game.  u can use "look" to see whats in the room. "look at" the view object descriptions.
-"take" to take the object. and "read" to read the object if its a book (u must have it in your inventory). "inventory" to view inventory.
-cya later.
+Yeah yeah i know its late. great america in like 4 hours. lol.  
+added some new commands.  added Objects (it is plural!!!!!!) class.
+There is a book in the startlevel of the game.  u can use "look" to see whats in the room. 
+"look at" the view object descriptions. "take" to take the object. 
+and "read" to read the object if its a book (u must have it in your inventory). 
+"inventory" to view inventory. cya later.
 
 7/24/09 - 7:20 pm - Derrick (v 1.0.7)
-Added new Thing class. Made a book class that extends thing.  need to figure out how use want to use commands on things.
-maybe use the look command or pickup command? need to figure out how to tag them to locations too. add a new hashmap for locations?
+Added new Thing class. Made a book class that extends thing.  
+Need to figure out how use want to use commands on things.
+Maybe use the look command or pickup command? 
+Need to figure out how to tag them to locations too. 
+Add a new hashmap for locations?
 
 7/24/09 - 5:00 am - Derrick (v 1.0.6.2)
-Fixed go commands and locations.  can now move between locations.  can use world.txt or testworld.txt
+Fixed go commands and locations.  can now move between locations.  
+Can use world.txt or testworld.txt
 
-7/24/09 3:13AM - Sam (v 1.0.6.1)
+7/24/09 - 3:13 am - Sam (v 1.0.6.1)
 Completed world parsing functionality for EXIT, CONNECTION, and LOCATION.
 textworld.txt was wrong because it was malformed. Fixed that, too.
 
-7/23/09 1:48 pm - Sam (v 1.0.6)
+7/23/09 - 1:48 pm - Sam (v 1.0.6)
 Change implementation for connection - AGAIN. Back to one way channel, renamed
-to path. Decision was that memory saved wasn't worth the messy implmentation.
+to path. Decision was that memory saved wasn't worth the messy implementation.
 
 Added keyword to World Description EXIT to differentiate between CONNECTIONS and
 one way path.
@@ -28,8 +34,9 @@ one way path.
 Refactored setupXXXX methods to allow future usage.
 
 7/23/09 - 4:46 pm - Derrick (v 1.0.5.1)
-Added some new location classes. Made a "world" in the testworld.txt. formats could be wrong (?).
-Initializes to testworld.txt. Right now it does not initialize... advworld.util.utility.setupworld needs to be looked at.
+Added some new location classes. Made a "world" in the testworld.txt. formats could 
+be wrong (?). Initializes to testworld.txt. Right now it does not initialize... 
+advworld.util.utility.setupworld needs to be looked at.
 
 7/23/09 - 1:08 pm - Derrick (v 1.0.5)
 Go command functional. You can now move between rooms using room names.
@@ -37,7 +44,8 @@ Look returns potential exits.
 
 7/23/09 - 12:58 am - Sam (v 1.0.4)
 Implemented parsing world file LOCATION and CONNECTIONS
-Made change to Exit class -- it is now Connections and specific direction parameters are removed for more generic extension possiblity later.
+Made change to Exit class -- it is now Connections and specific direction 
+parameters are removed for more generic extension possibility later.
 Delete Room.java---finally
 
 7/22/09 - 9:30 pm - Steven (v 1.0.3)
