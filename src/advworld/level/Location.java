@@ -2,6 +2,7 @@ package advworld.level;
 
 import java.util.*;
 
+import advworld.monsters.Monster;
 import advworld.objects.Objects;
 import advworld.util.Node;
 import advworld.util.Utility;
@@ -9,9 +10,10 @@ import advworld.util.Utility;
 public class Location {
 	
 	private Node<Location> myNode;
-	private Vector<Path> connections = new Vector<Path>();
 	private String myName;
+	private Vector<Path> connections = new Vector<Path>();
 	private Vector<Objects> myObjects = new Vector<Objects>();
+	private Vector<Monster> myMonsters = new Vector<Monster>();
 	
 	private String[] levels = {"Room", "Building", "Town", "City", "State", "Country", "Continent", "World"};
 	
@@ -192,6 +194,23 @@ public class Location {
 		while(iter.hasNext()){
 			Objects obj = (Objects) iter.next();
 			System.out.print(" " + obj.getName());
+		}
+	}
+	
+	public void addMonster(Monster mon){
+		myMonsters.add(mon);
+	}
+	
+	public void removeMonster(Monster item){
+		myMonsters.remove(item);
+	}
+	
+	public void listMonsters(){
+		System.out.print("Monsters:");
+		Iterator<Monster> iter = myMonsters.iterator();
+		while(iter.hasNext()){
+			Monster mon = (Monster) iter.next();
+			System.out.print(" " + mon.getName());
 		}
 	}
 }

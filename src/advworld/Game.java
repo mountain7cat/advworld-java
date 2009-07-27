@@ -4,9 +4,9 @@ import java.util.*;
 
 import advworld.objects.*;
 import advworld.level.*;
-import advworld.objects.Book;
 import advworld.player.*;
 import advworld.util.*;
+import advworld.monsters.*;
 
 public class Game {
 
@@ -112,11 +112,19 @@ public class Game {
 		
 		//initialize things
 		initializeObjects();
+		
+		//initialize monsters
+		initializeMonsters();
 				
 	}
 	
 	private static void initializeObjects(){
 		Book machine = new Book("Computer Organization and Design", startlevel, "Book used for CS61c", "blah blah blah... more cs stuff...");
+	}
+	
+	private static void initializeMonsters(){
+		Squirrel s = new Squirrel();
+		s.addMonster(startlevel.exits().firstElement().getFrom());
 	}
 
 	//being REAL lazy, don't even want to type "Utility."
