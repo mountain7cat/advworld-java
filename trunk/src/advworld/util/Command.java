@@ -5,6 +5,7 @@ import java.util.*;
 import advworld.Game;
 import advworld.level.Location;
 import advworld.level.Path;
+import advworld.monsters.Monster;
 import advworld.objects.*;
 import advworld.player.Party;
 import advworld.player.Player;
@@ -24,6 +25,7 @@ public abstract class Command {
 		table.put("read", new Command(){public void run(String arg[]){read(arg);}});
 		table.put("take", new Command(){public void run(String arg[]){take(arg);}});
 		table.put("inventory", new Command(){public void run(String arg[]){inventory(arg);}});
+		table.put("drop", new Command(){public void run(String arg[]){drop(arg);}});
 		return table;
 	}
 	
@@ -77,10 +79,9 @@ public abstract class Command {
 	
 	private static void attack(String arg[]){
 		Utility.debug("attack called");
-		if(arg.length <= 1){
-			System.out.println("Need target.");
+		if(arg.length == 1){
+			System.out.println("Attack what?");
 		} else {
-			System.out.print("ECHO: ");
 			for(int i = 0; i < arg.length ; i++){
 				System.out.print(arg[i] + " ");
 			}
@@ -244,6 +245,27 @@ public abstract class Command {
 		}
 	}
 	
+	private static void drop(String arg[]){
+		if(arg.length == 1){
+			System.out.println("Drop what?");
+		} else if(arg.length > 1){
+			Iterator<Objects> iter = Game.theParty.getleader().getInventory().iterator();
+			String objName = arg[1];
+			while(iter.hasNext()){
+				Objects obj = (Objects)iter.next();
+				if(obj.getName().equals(objName)){
+					Game.theParty.getleader().removeItem(obj);
+					Game.theParty.getlocation().addObject(obj);
+					System.out.println("You dropped " + "\"" + objName +"\"" + " on the ground.");
+					return;
+				}
+			}
+			System.out.println("You do not have " + "\"" + objName +"\"" + " in your inventory.");
+			return;
+		} else {
+			System.out.println("Incorrect command.");
+		}
+	}
 	private static void println(Object msg) {
 		Utility.println(msg);
 	}
