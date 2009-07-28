@@ -1,5 +1,11 @@
 Change Log:
 
+7/27/09 - 6:40 pm - Derrick (v 1.0.9)
+
+Added a few monsters to the startlevel, they will attack you once you attack them. 
+you can level up and also die (which ends the game).  you can also status the monster
+names to see their status. also added drop.
+
 7/25/09 - 4:41 am - Derrick (v 1.0.8)
 
 Yeah yeah i know its late. great america in like 4 hours. lol.  

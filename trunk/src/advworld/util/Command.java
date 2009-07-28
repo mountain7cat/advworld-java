@@ -91,7 +91,7 @@ public abstract class Command {
 					return;
 				}
 			}
-			System.out.println("There is no \"" + target +"\" in this " + Game.theParty.getlocation().getType() + ".");
+			System.out.println("There is no " + target +" in this " + Game.theParty.getlocation().getType() + ".");
 			return;
 		}
 	}
@@ -183,7 +183,7 @@ public abstract class Command {
 						return;
 					}
 				}
-				System.out.println("\"" + name +"\"" + " is not in this " + Game.theParty.getlocation().getType() + ".");
+				System.out.println(name +" is not in this " + Game.theParty.getlocation().getType() + ".");
 				return;
 			} else {
 				System.out.println("Incorrect Command");
@@ -202,17 +202,17 @@ public abstract class Command {
 				if(obj.getName().equals(title)){
 					if(obj.isType("Book")){
 						Book book = (Book) obj;
-						System.out.println("\"" + title +"\"" + " reads...");
+						System.out.println(title + " reads...");
 						System.out.println("     " + book.getContents());
 						System.out.println("End of " + book.getName());
 						return;
 					} else {
-						System.out.println("\"" + title +"\"" + " is not a book.");
+						System.out.println(title + " is not a book.");
 						return;
 					}
 				}
 			}
-			System.out.println("You do not have " + "\"" + title +"\"" + ".");
+			System.out.println("You do not have " + title +".");
 			return;
 		} else {
 			System.out.println("Incorrect command.");
@@ -233,12 +233,12 @@ public abstract class Command {
 						Game.theParty.getlocation().removeObject(obj);
 						return;
 					} else {
-						System.out.println("You can not pick up " + "\"" + objName +"\"" + ".");
+						System.out.println("You can not pick up "  + objName + ".");
 						return;
 					}
 				}
 			}
-			System.out.println("\"" + objName +"\"" + " is not in this " + Game.theParty.getlocation() + ".");
+			System.out.println(objName + " is not in this " + Game.theParty.getlocation() + ".");
 			return;
 		} else {
 			System.out.println("Incorrect command.");
@@ -270,11 +270,11 @@ public abstract class Command {
 				if(obj.getName().equals(objName)){
 					Game.theParty.getleader().removeItem(obj);
 					Game.theParty.getlocation().addObject(obj);
-					System.out.println("You dropped " + "\"" + objName +"\"" + " on the ground.");
+					System.out.println("You dropped " + objName + " on the ground.");
 					return;
 				}
 			}
-			System.out.println("You do not have " + "\"" + objName +"\"" + " in your inventory.");
+			System.out.println("You do not have " + objName + " in your inventory.");
 			return;
 		} else {
 			System.out.println("Incorrect command.");
