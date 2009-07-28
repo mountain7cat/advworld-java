@@ -119,7 +119,7 @@ public class Game {
 	}
 	
 	private static void initializeObjects(){
-		Book machine = new Book("Computer Organization and Design", startlevel, "Book used for CS61c", "blah blah blah... more cs stuff...");
+		Book machine = new Book("Computer Book", startlevel, "Book used for CS61c", "blah blah blah... more cs stuff...");
 	}
 	
 	private static void initializeMonsters(){
