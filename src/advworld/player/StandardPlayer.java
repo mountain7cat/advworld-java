@@ -24,6 +24,7 @@ public class StandardPlayer extends Player {
 		HP_MAX = HP = 10;
 		MP_MAX = MP= 0;
 		exp = 0;
+		damage = level;
 	}
 	
 	public void status() {

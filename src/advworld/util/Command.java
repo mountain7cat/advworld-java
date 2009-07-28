@@ -82,10 +82,17 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Attack what?");
 		} else {
-			for(int i = 0; i < arg.length ; i++){
-				System.out.print(arg[i] + " ");
+			Iterator<Monster> iter = Game.theParty.getlocation().getMyMonsters().iterator();
+			String target = arg[1];
+			while(iter.hasNext()){
+				Monster mon = (Monster) iter.next();
+				if(target.equals(mon.getName())){
+					Game.theParty.getleader().attack(mon);
+					return;
+				}
 			}
-			System.out.println();
+			System.out.println("There is no \"" + target +"\" in this " + Game.theParty.getlocation().getType() + ".");
+			return;
 		}
 	}
 	
@@ -100,12 +107,17 @@ public abstract class Command {
 				}
 			}
 		} else {
-			// Should search current room for other players/monsters and return status of that person/monster
-			System.out.print("ECHO: ");
-			for(int i = 0; i < arg.length ; i++){
-				System.out.print(arg[i] + " ");
+			Iterator<Monster> iter = Game.theParty.getlocation().getMyMonsters().iterator();
+			String target = arg[1];
+			while(iter.hasNext()){
+				Monster mon = iter.next();
+				if(target.equals(mon.getName())){
+					mon.status();
+					return;
+				}
 			}
-			System.out.println();
+			System.out.println("There is no " + target + " in this " + Game.theParty.getlocation().getType() + ".");
+			return;
 		}
 	}	
 	
@@ -148,6 +160,8 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println(Game.theParty.getlocation().description());
 			Game.theParty.getlocation().listItems();
+			System.out.println("");
+			Game.theParty.getlocation().listMonsters();
 			System.out.println("");
 		} else {
 			Utility.debug(arg[0]);

@@ -124,9 +124,21 @@ public class Game {
 	
 	private static void initializeMonsters(){
 		Squirrel s = new Squirrel();
-		s.addMonster(startlevel.exits().firstElement().getFrom());
+		Monster easy = new Monster("bug", "stings", 1, 2, 1, 3, 1,"crazy bug", null);
+		Monster m = new Monster("donkey", "kicks", 2, 4, 1, 7, 1,"stupid donkey", null);
+		s.addMonster(startlevel);
+		easy.addMonster(startlevel);
+		m.addMonster(startlevel);
 	}
 
+	public static void gameover(){
+		System.out.println("GAME OVER!");
+		System.out.println("FINAL STATUS");
+		Game.theParty.getleader().status();
+		System.out.println("\n THANKS FOR PLAYING!");
+		System.exit(0);
+	}
+	
 	//being REAL lazy, don't even want to type "Utility."
 	private static void print(Object msg){
 		Utility.print(msg);
