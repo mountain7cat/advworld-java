@@ -10,7 +10,7 @@ public abstract class Player {
 	
 	protected Party theParty;
 	
-	protected int HP_MAX, MP_MAX, HP, MP, level, exp; 
+	protected int HP_MAX, MP_MAX, HP, MP, level, exp, damage; 
 	
 	protected String name;
 	
@@ -25,8 +25,43 @@ public abstract class Player {
 	 * @param m monster
 	 * @return time passed
 	 */
-	public int attack (Monster m) {
-		return level;
+	public void attack (Monster m) {
+		System.out.println("You attacked \"" + m.getName() + "\"!");
+		int newHP = m.getHP() - damage;
+		if(m.setHP(newHP)){
+			System.out.println(m.getName() + " loses " + damage + " HP.");
+			m.attack(this);
+		} else {
+			System.out.println("You killed the " + m.getName() + "!");
+			m.getLoc().removeMonster(m);
+			gainEXP(m.getExp());
+		}
+	}
+	
+	public void gainEXP(int gained){
+		exp = exp + gained;
+		System.out.println("You gained " + gained + " experience points!");
+		if(exp / 10 > level-1){
+			int lvl = exp / 10;
+			gainlevel(lvl);
+		}
+	}
+	
+	private void gainlevel(int lvl){
+		System.out.println("You gained " + lvl + " level.");
+		level += lvl;
+		System.out.println("You are now level "+level+".");
+		HP_MAX = HP = level * 10;
+		damage = level;
+	}
+	
+	public int getHP(){
+		return HP;
+	}
+	
+	public boolean setHP(int newHP){
+		HP = newHP;
+		return newHP > 0;
 	}
 	
 	public void addItem(Objects item){

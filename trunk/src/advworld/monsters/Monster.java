@@ -1,19 +1,22 @@
 package advworld.monsters;
 
+import advworld.Game;
 import advworld.level.*;
 import advworld.player.*;
 
-public abstract class Monster {
-	protected int HP, level, exp, freq, dam;
+// needs to be abstract class, temporarily set to regular class
+public class Monster {
+	protected int HP, HP_MAX,level, exp, freq, dam;
 	protected String name, attack, description;
 	protected MobNode node;
+	protected Location loc;
 	
 	public Monster(String myName, String myAttack, int myLevel, int myHP, int damage,
 			int expGiven, int frequency, String myDescription, MobNode myNode) {
 		name = myName;
 		attack = myAttack;
 		level = myLevel;
-		HP = myHP;
+		HP = HP_MAX = myHP;
 		dam = damage;
 		exp = expGiven;
 		freq = frequency;
@@ -37,6 +40,16 @@ public abstract class Monster {
 		return HP;
 	}
 	
+	/**
+	 * returns false if monster's new hp is negative or zero
+	 * @param newHP
+	 * @return
+	 */
+	public boolean setHP(int newHP){
+		HP = newHP;
+		return newHP > 0;
+	}
+	
 	public int getLevel(){
 		return level;
 	}
@@ -53,7 +66,12 @@ public abstract class Monster {
 		return dam;
 	}
 	
+	public Location getLoc(){
+		return loc;
+	}
+	
 	public void addMonster(Location loc){
+		this.loc = loc;
 		loc.addMonster(this);
 	}
 	
@@ -66,7 +84,21 @@ public abstract class Monster {
 	 * @param p player
 	 * @return time passed
 	 */
-	public int attack (Player p) {
-		return level;
+	public void attack (Player p) {
+		System.out.println(name + " " + attack + " you!");
+		int newHP = p.getHP() - dam;
+		if(p.setHP(newHP)){
+			System.out.println("You loss " + dam + " HP.");
+		} else {
+			System.out.println(name + " killed you!");
+			Game.gameover();
+		}
+	}
+	
+	public void status() {
+		System.out.println("Name:  " + name);
+		System.out.println("Level: " + level);
+		System.out.println("HP:    " + HP + "/" + HP_MAX);
+		System.out.println("Description:   " + description);
 	}
 }

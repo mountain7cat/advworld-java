@@ -81,6 +81,10 @@ public class Location {
 		return myObjects;
 	}
 	
+	public Vector<Monster> getMyMonsters(){
+		return myMonsters;
+	}
+	
 	public void setName(String myName) {
 		this.myName = myName;
 	}
@@ -210,7 +214,7 @@ public class Location {
 		Iterator<Monster> iter = myMonsters.iterator();
 		while(iter.hasNext()){
 			Monster mon = (Monster) iter.next();
-			System.out.print(" " + mon.getName());
+			System.out.print(" " + mon.getDescription() + " ||");
 		}
 	}
 }
