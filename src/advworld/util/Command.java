@@ -35,7 +35,7 @@ public abstract class Command {
 	private static void go(String arg[]) {
 		Utility.debug("go called");
 		if(arg.length <= 1){
-			System.out.println("Need direction.");
+			System.out.println("Go where?");
 		} else if(arg.length == 2){
 			Path p;
 			String destination = arg[1];
@@ -80,13 +80,13 @@ public abstract class Command {
 	private static void attack(String arg[]){
 		Utility.debug("attack called");
 		if(arg.length == 1){
-			System.out.println("Attack what?");
+			System.out.println("Attack who?");
 		} else {
 			Iterator<Monster> iter = Game.theParty.getlocation().getMyMonsters().iterator();
 			String target = arg[1];
 			while(iter.hasNext()){
 				Monster mon = (Monster) iter.next();
-				if(target.equals(mon.getName())){
+				if(target.equals(mon.getName()) || target.equals(mon.getDescription())){
 					Game.theParty.getleader().attack(mon);
 					return;
 				}
@@ -125,10 +125,14 @@ public abstract class Command {
 		Utility.debug("help called");
 		if(arg.length == 1){
 			System.out.println("List of Commands:");
+			Set<String> treeSet = new TreeSet<String>();
 			Set<String> s = table.keySet();
 			Iterator<String> iter = s.iterator();
 			while(iter.hasNext()){
-				System.out.println(" -" + iter.next());
+				treeSet.add(iter.next());
+			}
+			for(String cmd : treeSet){
+				System.out.println(" -" + cmd);
 			}
 		} else {
 			// Should search current room for other players/monsters and return status of that person/monster
@@ -221,7 +225,7 @@ public abstract class Command {
 	
 	private static void take(String arg[]){
 		if(arg.length == 1){
-			System.out.println("Read what?");
+			System.out.println("Take what?");
 		} else if(arg.length > 1){
 			Iterator<Objects> iter = Game.theParty.getlocation().getMyObjects().iterator();
 			String objName = arg[1];
@@ -248,10 +252,15 @@ public abstract class Command {
 	private static void inventory(String arg[]){
 		if(arg.length == 1){
 			Iterator<Objects> iter = Game.theParty.getleader().getInventory().iterator();
-			System.out.print("Inventory:");
-			while(iter.hasNext()){
-				System.out.print(iter.next().getType() + ": " + iter.next().getName());
-				System.out.print((iter.hasNext()?", ":"\n"));
+			if(!iter.hasNext()){
+				System.out.println("Inventory: ");
+			} else {
+				System.out.print("Inventory: ");
+				while(iter.hasNext()){
+					Objects obj	= (Objects) iter.next();
+					System.out.print(obj.getType() + ": " + obj.getName());
+					System.out.print((iter.hasNext()?", ":"\n"));
+				}
 			}
 			return;
 		} else {
