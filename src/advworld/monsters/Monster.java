@@ -8,11 +8,10 @@ import advworld.player.*;
 public class Monster {
 	protected int HP, HP_MAX,level, exp, freq, dam;
 	protected String name, attack, description;
-	protected MobNode node;
 	protected Location loc;
 	
 	public Monster(String myName, String myAttack, int myLevel, int myHP, int damage,
-			int expGiven, int frequency, String myDescription, MobNode myNode) {
+			int expGiven, int frequency, String myDescription) {
 		name = myName;
 		attack = myAttack;
 		level = myLevel;
@@ -21,7 +20,6 @@ public class Monster {
 		exp = expGiven;
 		freq = frequency;
 		description = myDescription;
-		node = myNode;
 	}
 
 	public String getName(){

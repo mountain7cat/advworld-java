@@ -1,10 +1,13 @@
 package advworld.monsters;
 
+import java.util.*;
+
+import advworld.util.Utility;
+
 public class Mob {
-	final static int MONSTER_RARITY = 5;
 	
-	private int size;
-	private MobNode head, tail;
+	private Vector<Monster> mob;
+	final static int MONSTER_RARITY = 5;
 	
 	/**
 	 * Mob constructor. Takes a parameter m, which is a Monster.
@@ -12,18 +15,15 @@ public class Mob {
 	 * @param m is a Monster that will be in the head MobNode.
 	 */
 	public Mob(Monster m) {
-		MobNode head = new MobNode(m);
-		head.setNext(null);
-		head.setPrev(null);
-		tail = head;
-		size++;
+		this();
+		mob.add(m);
 	}
 	
 	/**
 	 * Empty Mob constructor.
 	 */
 	public Mob() {
-		this(null);
+		mob = new Vector<Monster>();
 	}
 	
 	/**
@@ -32,7 +32,7 @@ public class Mob {
 	 * @return boolean
 	 */
 	public boolean isEmpty() {
-		return (size == 0);
+		return mob.size() == 0;
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class Mob {
 	 * @return int size
 	 */
 	public int num() {
-		return size;
+		return mob.size();
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class Mob {
 	 *  used for the "look" command
 	 */
 	public void print_monsters() {
-		MobNode node = head;
+		int size = mob.size();
 		
 		System.out.print("There ");
 		if (size > 1) {
@@ -64,10 +64,9 @@ public class Mob {
 			System.out.println(" here:");
 		}
 		
-		while (node != null) {
-			System.out.println(node.monster().name);
-			node = node.next();
-		}
+		Iterator<Monster> iter = mob.iterator();
+		while(iter.hasNext())
+			Utility.println(iter.next().name);
 	}
 	
 	/**
@@ -77,15 +76,12 @@ public class Mob {
 	 * @param name of Monster to be found
 	 */
 	public Monster find(String name) {
-		MobNode node = head;
-		
-		while (node != null) {
-			if (name.equals(node.monster().name)) {
-				return node.monster();
-			}
-			node = node.next(); 
+		Iterator<Monster> iter = mob.iterator();
+		while(iter.hasNext()) {
+			Monster m = iter.next();
+			if (m.name == name)
+				return m;
 		}
-		
 		return null;
 	}
 	
@@ -138,20 +134,7 @@ public class Mob {
 	 * @param Monster m is the Monster to be added
 	 */
 	public void append(Monster m) {
-		MobNode newNode = new MobNode(m);
-		m.node = newNode;
-		
-		newNode.setNext(null);
-		newNode.setPrev(tail);
-		
-		if (this.isEmpty()) {
-			head = newNode;
-		} else {
-			tail.setNext(newNode);
-		}
-		
-		tail = newNode;
-		size++;
+		mob.add(m);
 	}
 	
 	/**
@@ -161,23 +144,7 @@ public class Mob {
 	 * @param Monster m is the Monster to be deleted
 	 */
 	public void delete(Monster m) {
-		if (m != null) {
-			MobNode node = m.node;
-			
-			if (node.prev() != null) {	// if not head node
-				node.prev().setNext(node.next());
-			} else {
-				head = node.next();		// update head node
-			}
-			
-			if (node.next() != null) {	// if not tail node
-				node.next().setPrev(node.prev());
-			} else {
-				tail = node.prev();		// update tail node
-			}
-			
-			size--;
-		}
+		mob.removeElement(m);
 	}
 	
 }
