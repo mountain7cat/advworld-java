@@ -91,12 +91,14 @@ public class Party {
 	 */
 	public void setLocation(Location loc){
 		Game.DEBUG = true;
+		/*
 		Utility.debug("setting location");
-		Utility.debug(loc.getChildren().toString());
+		Utility.debug("new location's children - " + loc.getChildren().toString());
 		if(loc.getChildren().size() == 1){
 			Utility.debug("only 1 child");
 			location = loc.getChild();
 		}
+		*/
 		location = loc;
 		Game.DEBUG = false;
 	}
