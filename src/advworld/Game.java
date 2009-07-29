@@ -24,6 +24,7 @@ public class Game {
 	private static HashMap<String,Command> commands;
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+	public static Calendar calendar;
 
 	/**
 	 * Prints the src/changelog.txt to the console.
@@ -99,6 +100,9 @@ public class Game {
 		
 		//print Change Log
 		printChangeLog();
+		
+		//initialize calendar
+		calendar = new GregorianCalendar();
 		
 		//initialize variables
 		AllLocations = Utility.setupWorld("src/testworld.txt");
