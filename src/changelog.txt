@@ -1,5 +1,9 @@
 Change Log:
 
+7/28/09 - 10:52 pm - Derrick (v 1.0.10)
+
+can type "go out" to move to the parent level of the location.
+
 7/27/09 - 6:40 pm - Derrick (v 1.0.9)
 
 Added a few monsters to the startlevel, they will attack you once you attack them. 
