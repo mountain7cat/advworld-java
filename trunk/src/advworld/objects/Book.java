@@ -11,8 +11,8 @@ public class Book extends Objects{
 	
 	public Book(String name, Location loc, String desc){
 		super(name, loc, desc);
-		contents = "empty";
 		pickUpAble = true;
+		equip_able = false;
 		type = "Book";
 		contents = "Empty";
 	}
@@ -22,6 +22,7 @@ public class Book extends Objects{
 		this.contents = contents;
 		pickUpAble = true;
 		type = "Book";
+		equip_able = false;
 	}
 	
 	public String getContents(){

@@ -2,6 +2,7 @@ package advworld.level;
 
 import java.util.*;
 
+import advworld.Game;
 import advworld.monsters.Monster;
 import advworld.objects.Objects;
 import advworld.util.Node;
@@ -14,6 +15,7 @@ public class Location {
 	private Vector<Path> connections = new Vector<Path>();
 	private Vector<Objects> myObjects = new Vector<Objects>();
 	private Vector<Monster> myMonsters = new Vector<Monster>();
+	private Location myParent;
 	
 	private String[] levels = {"Room", "Building", "Town", "City", "State", "Country", "Continent", "World"};
 	
@@ -33,17 +35,20 @@ public class Location {
 	public Location(String name, Location Parent){
 		setInfo(name);
 		Parent.addChild(this);
+		myParent = Parent;
 	}
 	
 	public Location(String name, Location Parent, Location child){
 		setInfo(name);
 		Parent.addChild(this);
 		this.addChild(child);
+		myParent = Parent;
 	}
 	
 	public Location(String name, Location Parent, Iterator<Location> children){
 		setInfo(name);
 		Parent.addChild(this);
+		myParent = Parent;
 		while(children.hasNext())
 			addChild(children.next());
 	}
@@ -85,6 +90,10 @@ public class Location {
 		return myMonsters;
 	}
 	
+	public Location getParent(){
+		return myParent;
+	}
+	
 	public void setName(String myName) {
 		this.myName = myName;
 	}
@@ -95,6 +104,7 @@ public class Location {
 	 * @return true if addition is successful, false otherwise
 	 */
 	public boolean addChild(Location child){
+		child.myParent = this;
 		return myNode.addChild(child.getNode());
 	}
 	
@@ -125,20 +135,49 @@ public class Location {
 	}
 	
 	/**
+	 * returns the first child in myChildren
+	 * @return
+	 */
+	public Location getChild(){
+		Set<String> keys = myChildren.keySet();
+		Iterator<String> iter = keys.iterator();
+		String first = null;
+		if(iter.hasNext()){
+			first = iter.next();
+		}
+		return myChildren.get(first);
+	}
+	
+	/**
 	 * set this location's parent through adding itself to parent's children
 	 * list
 	 * @param parent
 	 */
 	public void setParent(Location parent){
+		this.myParent = parent;
 		parent.addChild(this);
 	}
 	
 	/**
 	 * description of room returned as String
 	 */
-	public String description(){
-		return this.getType() + " Name:   " + myName + "\n" +
-				"Exits:  " + connections.toString();
+	public void description(){
+		Game.DEBUG = false;
+		System.out.println(this.getType() + " Name:   " + myName);
+		System.out.print("Exits:   [");
+		Iterator<Path> iter = connections.iterator();
+		while(iter.hasNext()){
+			Path path = iter.next();
+			Location exit = path.getTo();
+			if(this.getParent().getName().equals(exit.getName())){
+				System.out.print("Out of " + this.getName());
+				System.out.print(iter.hasNext()?", ":"]\n");
+			} else {
+				System.out.print(exit.getName());
+				System.out.print(iter.hasNext()?", ":"]\n");
+			}
+		}
+		Game.DEBUG = false;
 	}
 	
 	//add exit
