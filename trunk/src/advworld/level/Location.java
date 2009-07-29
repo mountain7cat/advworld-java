@@ -164,18 +164,22 @@ public class Location {
 	public void description(){
 		Game.DEBUG = false;
 		System.out.println(this.getType() + " Name:   " + myName);
-		System.out.print("Exits:   [");
 		Iterator<Path> iter = connections.iterator();
-		while(iter.hasNext()){
-			Path path = iter.next();
-			Location exit = path.getTo();
-			if(this.getParent().getName().equals(exit.getName())){
-				System.out.print("Out of " + this.getName());
-				System.out.print(iter.hasNext()?", ":"]\n");
-			} else {
-				System.out.print(exit.getName());
-				System.out.print(iter.hasNext()?", ":"]\n");
+		System.out.print("Exits:   [");
+		if(iter.hasNext()){
+			while(iter.hasNext()){
+				Path path = iter.next();
+				Location exit = path.getTo();
+				if(this.getParent().getName().equals(exit.getName())){
+					System.out.print("Out of " + this.getName());
+					System.out.print(iter.hasNext()?", ":"]\n");
+				} else {
+					System.out.print(exit.getName());
+					System.out.print(iter.hasNext()?", ":"]\n");
+				}
 			}
+		} else {
+			System.out.println("No exits]");
 		}
 		Game.DEBUG = false;
 	}
