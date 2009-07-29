@@ -25,7 +25,7 @@ public class Game {
 
 	public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 	public static Calendar calendar;
-
+	
 	/**
 	 * Prints the src/changelog.txt to the console.
 	 */
@@ -66,8 +66,7 @@ public class Game {
 			System.exit(1);
 		}
 		
-		println(startlevel==null);
-		println(startlevel.description());
+		startlevel.description();
 		
 		while(true){
 			print("> ");

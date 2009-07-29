@@ -43,29 +43,36 @@ public abstract class Command {
 			Iterator<Path> paths = Game.theParty.getlocation().exits().iterator();
 			if(Game.theParty.getlocation().getName().equals(destination)){
 				Utility.println("You are already at "+destination);
-				System.out.println(Game.theParty.getlocation().description());
+				Game.theParty.getlocation().description();
 			} else {
 				while(paths.hasNext()){
 					p = paths.next();
-					if(p.getTo().getName().equals(destination) || p.getTo().getTypeName().equals(destination)){
+					String out = "Out of " + p.getFrom().getName();
+					String out1 = "out of " + p.getFrom().getName();
+					if(destination.equals("out") || out.equals(destination) || out1.equals(destination) ){
+						System.out.println("You left " + Game.theParty.getlocation().getTypeName());
+						Game.theParty.setLocation(Game.theParty.getlocation().getParent());
+						Game.theParty.getlocation().description();
+						return;
+					} else if(p.getTo().getName().equals(destination) || p.getTo().getTypeName().equals(destination)){
 						if(!p.getFrom().getName().equals(Game.theParty.getlocation().getName())){
 							//shouldn't hit this case, where a path's from is not the current location
 							Utility.debug("GO function - Malformed path: FIX IT!!!");
 							return;
 						} else if (p.isLocked()){
 							System.out.println(p.getTo().lockedDescription());
-							System.out.println(Game.theParty.getlocation().description());
+							Game.theParty.getlocation().description();
 							return;
 						}
 						//perform moving function
 						Game.theParty.setLocation(p.getTo());
 						Utility.println("You moved from " + p.getFrom().getName() + " to " + p.getTo().getName() + ".");
-						System.out.println(Game.theParty.getlocation().description());
+						Game.theParty.getlocation().description();
 						return;
 					}
 				}
 				Utility.println(destination + " is not an exit.");
-				System.out.println(Game.theParty.getlocation().description());
+				Game.theParty.getlocation().description();
 			}
 		} else {
 			System.out.println("Too many arguments.");
@@ -162,7 +169,7 @@ public abstract class Command {
 		Game.DEBUG = true;
 		Utility.debug("look called" + arg.length);
 		if(arg.length == 1){
-			System.out.println(Game.theParty.getlocation().description());
+			Game.theParty.getlocation().description();
 			Game.theParty.getlocation().listItems();
 			System.out.println("");
 			Game.theParty.getlocation().listMonsters();

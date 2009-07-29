@@ -8,7 +8,7 @@ public abstract class Objects {
 	protected Location myLocation;
 	protected String myDescription;
 	
-	protected boolean pickUpAble;
+	protected boolean pickUpAble, equip_able;
 	
 	protected String type;
 	
@@ -18,6 +18,7 @@ public abstract class Objects {
 		myDescription = desc;
 		loc.addObject(this);
 		pickUpAble = false;
+		equip_able = false;
 	}
 	
 	public String getName(){
@@ -42,5 +43,9 @@ public abstract class Objects {
 	
 	public boolean isPickUpAble(){
 		return pickUpAble;
+	}
+	
+	public boolean isEquip_Able(){
+		return equip_able;
 	}
 }

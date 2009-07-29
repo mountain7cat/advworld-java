@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import advworld.Game;
 import advworld.level.*;
 import advworld.util.AdvworldException;
 import advworld.util.Utility;
@@ -89,7 +90,15 @@ public class Party {
 	 * @param loc
 	 */
 	public void setLocation(Location loc){
+		Game.DEBUG = true;
+		Utility.debug("setting location");
+		Utility.debug(loc.getChildren().toString());
+		if(loc.getChildren().size() == 1){
+			Utility.debug("only 1 child");
+			location = loc.getChild();
+		}
 		location = loc;
+		Game.DEBUG = false;
 	}
 	/**
 	 * changes the player p to the a new position

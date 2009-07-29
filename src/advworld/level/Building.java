@@ -25,8 +25,8 @@ public class Building extends Location{
 		//does nothing so far
 	}
 
-	public String description() {
-		return super.description();
+	public void description() {
+		super.description();
 	}
 
 	public Vector<Path> exits() {
