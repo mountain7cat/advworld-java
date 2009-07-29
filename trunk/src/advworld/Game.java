@@ -128,8 +128,8 @@ public class Game {
 	
 	private static void initializeMonsters(){
 		Squirrel s = new Squirrel();
-		Monster easy = new Monster("bug", "stings", 1, 2, 1, 3, 1,"crazy bug", null);
-		Monster m = new Monster("donkey", "kicks", 2, 4, 1, 7, 1,"stupid donkey", null);
+		Monster easy = new Monster("bug", "stings", 1, 2, 1, 3, 1,"crazy bug");
+		Monster m = new Monster("donkey", "kicks", 2, 4, 1, 7, 1,"stupid donkey");
 		s.addMonster(startlevel);
 		easy.addMonster(startlevel);
 		m.addMonster(startlevel);
