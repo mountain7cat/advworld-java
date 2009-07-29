@@ -3,7 +3,10 @@ World File Description:
 The world file is split into different sections:
 
 LOCATION
-Entries for all the room you will have in your world. PARENT and CHILDREN keywords are optional. [start] at end of line denotes starting location
+Entries for all the room you will have in your world. PARENT and CHILDREN keywords are
+optional. [start] at end of line denotes starting location.
+A Location must have already been created in a previous line before it can be
+used as parent or children.
 format: LOCATION <location name> <location type> PARENT <Parent location name> CHILDREN <child location1 name> <child location2 name> ... ?[start]
 
 CONNECTIONS

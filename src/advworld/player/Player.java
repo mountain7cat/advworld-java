@@ -4,7 +4,7 @@ import java.util.*;
 
 import advworld.level.Location;
 import advworld.monsters.*;
-import advworld.objects.Objects;
+import advworld.objects.Thing;
 
 public abstract class Player {
 	
@@ -14,9 +14,9 @@ public abstract class Player {
 	
 	protected String name;
 	
-	protected Vector<Objects> inventory = new Vector<Objects>();
+	protected Vector<Thing> inventory = new Vector<Thing>();
 	
-	protected Objects holding;
+	protected Thing holding;
 	
 	
 	/**
@@ -64,17 +64,17 @@ public abstract class Player {
 		return newHP > 0;
 	}
 	
-	public void addItem(Objects item){
+	public void addItem(Thing item){
 		inventory.add(item);
 		System.out.println("Added " + item.getName() + " to inventory.");
 	}
 	
-	public void removeItem(Objects item){
+	public void removeItem(Thing item){
 		inventory.remove(item);
 		System.out.println("Removed " + item.getName() + " from inventory.");
 	}
 	
-	public Vector<Objects> getInventory(){
+	public Vector<Thing> getInventory(){
 		return inventory;
 	}
 	

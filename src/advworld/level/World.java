@@ -32,10 +32,6 @@ public class World extends Location{
 	public void description() {
 		super.description();
 	}
-
-	public Vector<Path> exits() {
-		return super.exits();
-	}
 	
 	public String getType(){
 		return type;

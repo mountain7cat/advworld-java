@@ -181,12 +181,12 @@ public abstract class Command {
 			if(tokens[0].equals("at") && tokens.length == 1){
 				System.out.println("Look at what?");
 			} else if(tokens[0].equals("at") && tokens[1].length() > 0){
-				Iterator<Objects> iter = Game.theParty.getlocation().getMyObjects().iterator();
+				Iterator<Thing> iter = Game.theParty.getlocation().getMyObjects().iterator();
 				String name = tokens[1];
 				Utility.debug(name);
 				Game.DEBUG = false;
 				while(iter.hasNext()){
-					Objects obj = (Objects)iter.next();
+					Thing obj = (Thing)iter.next();
 					if(obj.getName().equals(name)){
 						System.out.println("~Name: " + obj.getName());
 						System.out.println("~Type: " + obj.getType());
@@ -206,10 +206,10 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Read what?");
 		} else if(arg.length > 1){
-			Iterator<Objects> iter = Game.theParty.getleader().getInventory().iterator();
+			Iterator<Thing> iter = Game.theParty.getleader().getInventory().iterator();
 			String title = arg[1];
 			while(iter.hasNext()){
-				Objects obj = (Objects)iter.next();
+				Thing obj = (Thing)iter.next();
 				if(obj.getName().equals(title)){
 					if(obj.isType("Book")){
 						Book book = (Book) obj;
@@ -234,10 +234,10 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Take what?");
 		} else if(arg.length > 1){
-			Iterator<Objects> iter = Game.theParty.getlocation().getMyObjects().iterator();
+			Iterator<Thing> iter = Game.theParty.getlocation().getMyObjects().iterator();
 			String objName = arg[1];
 			while(iter.hasNext()){
-				Objects obj = (Objects)iter.next();
+				Thing obj = (Thing)iter.next();
 				if(obj.getName().equals(objName)){
 					if(obj.isPickUpAble()){
 						Game.theParty.getleader().addItem(obj);
@@ -258,13 +258,13 @@ public abstract class Command {
 	
 	private static void inventory(String arg[]){
 		if(arg.length == 1){
-			Iterator<Objects> iter = Game.theParty.getleader().getInventory().iterator();
+			Iterator<Thing> iter = Game.theParty.getleader().getInventory().iterator();
 			if(!iter.hasNext()){
 				System.out.println("Inventory: ");
 			} else {
 				System.out.print("Inventory: ");
 				while(iter.hasNext()){
-					Objects obj	= (Objects) iter.next();
+					Thing obj	= (Thing) iter.next();
 					System.out.print(obj.getType() + ": " + obj.getName());
 					System.out.print((iter.hasNext()?", ":"\n"));
 				}
@@ -279,10 +279,11 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Drop what?");
 		} else if(arg.length > 1){
-			Iterator<Objects> iter = Game.theParty.getleader().getInventory().iterator();
+			Iterator<Thing> iter = Game.theParty.getleader().getInventory().iterator();
 			String objName = arg[1];
 			while(iter.hasNext()){
-				Objects obj = (Objects)iter.next();
+
+				Thing obj = (Thing)iter.next();
 				if(obj.getName().equals(objName)){
 					Game.theParty.getleader().removeItem(obj);
 					Game.theParty.getlocation().addObject(obj);

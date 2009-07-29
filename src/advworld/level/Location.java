@@ -2,9 +2,9 @@ package advworld.level;
 
 import java.util.*;
 
+import advworld.objects.Thing;
 import advworld.Game;
 import advworld.monsters.Monster;
-import advworld.objects.Objects;
 import advworld.util.Node;
 import advworld.util.Utility;
 
@@ -13,7 +13,7 @@ public class Location {
 	private Node<Location> myNode;
 	private String myName;
 	private Vector<Path> connections = new Vector<Path>();
-	private Vector<Objects> myObjects = new Vector<Objects>();
+	private Vector<Thing> myObjects = new Vector<Thing>();
 	private Vector<Monster> myMonsters = new Vector<Monster>();
 	private Location myParent;
 	
@@ -82,7 +82,7 @@ public class Location {
 		return this.getType()+ " " + myName;
 	}
 	
-	public Vector<Objects> getMyObjects(){
+	public Vector<Thing> getMyObjects(){
 		return myObjects;
 	}
 	
@@ -227,19 +227,19 @@ public class Location {
 		return i;
 	}
 	
-	public void addObject(Objects item){
+	public void addObject(Thing item){
 		myObjects.add(item);
 	}
 	
-	public void removeObject(Objects item){
+	public void removeObject(Thing item){
 		myObjects.remove(item);
 	}
 	
 	public void listItems(){
 		System.out.print("Items:");
-		Iterator<Objects> iter = myObjects.iterator();
+		Iterator<Thing> iter = myObjects.iterator();
 		while(iter.hasNext()){
-			Objects obj = (Objects) iter.next();
+			Thing obj = (Thing) iter.next();
 			System.out.print(" " + obj.getName());
 		}
 	}
