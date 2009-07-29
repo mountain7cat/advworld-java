@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import advworld.Game;
 import advworld.level.*;
+import advworld.objects.Thing;
 
 /**
  * All utility functions for the project here.
@@ -24,7 +25,16 @@ public class Utility {
 		Pattern.compile("NPC(\\s++\\w++){3}"),
 		Pattern.compile("EXIT(\\s++\\w++){2}(\\s++LOCK\\s++)?")
 	};
-
+	
+	private static String[] classPackages = {
+		"advworld.level.",//location
+		"",//connection
+		"advworld.objects.",//object
+		"advworld.monsters.",//monster
+		"",//NPC
+		""//exits
+	};
+	
 	private static final int LOCATION = 0;
 	private static final int CONNECTION = 1;
 	private static final int OBJECT = 2;
@@ -101,7 +111,7 @@ public class Utility {
 		String locName=tokens[1], locType=tokens[2],parentName;
 		String[] childrenName;
 		
-		Class<?> clas = Class.forName("advworld.level."+locType);
+		Class<?> clas = Class.forName(classPackages[LOCATION]+locType);
 		Location loc;
 		if(hm.containsKey(locName)){
 			loc = hm.remove(locName);
@@ -157,8 +167,13 @@ public class Utility {
 		
 		hm.get(tokens[1]).addExit(c);
 	}
-	public static void setupObject(HashMap<String,Location> hm,String line){
+	public static void setupObject(HashMap<String,Location> hm,String line) throws ClassNotFoundException, IllegalArgumentException, SecurityException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException{
 		debug("OBJECT being initialized...");
+		String[] tokens = line.split("\\s");
+		String objectName = tokens[1], objectType = tokens[2], roomAssoc = tokens[3];
+		Class<?> clas = Class.forName(classPackages[OBJECT]+objectType);
+		Thing o = (Thing)(clas.getConstructor(String.class, Location.class).newInstance(objectName,hm.get(roomAssoc)));
+		
 	}
 	public static void setupNPC(HashMap<String,Location> hm,String line){
 		debug("NPC being initialized...");

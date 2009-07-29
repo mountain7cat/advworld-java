@@ -5,12 +5,13 @@ import java.util.HashMap;
 import advworld.level.Location;
 import advworld.util.Command;
 
-public class Book extends Objects{
+public class Book extends Thing{
 
 	private String contents;
 	
 	public Book(String name, Location loc, String desc){
-		super(name, loc, desc);
+		super(name, loc);
+		this.setDescription(desc);
 		pickUpAble = true;
 		equip_able = false;
 		type = "Book";
@@ -18,7 +19,8 @@ public class Book extends Objects{
 	}
 	
 	public Book(String name, Location loc, String desc, String contents){
-		super(name,loc, desc);
+		super(name,loc);
+		this.setDescription(desc);
 		this.contents = contents;
 		pickUpAble = true;
 		type = "Book";
