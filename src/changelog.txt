@@ -1,5 +1,12 @@
 Change Log:
 
+7/29/09 - 5:51 pm - Derrick (v 1.0.11)
+
+added new locations.  when going into Room306, you will go straight to the hall and vice versa.
+when going to a location (room306) with only one exit (hall) you will go straight to the
+only exit (hall). we should try to get an actual miniworld going but first we need a way to
+parse description of locations and parse creating objects/monsters and giving those descriptions.
+
 7/28/09 - 10:52 pm - Derrick (v 1.0.10)
 
 can type "go out" to move to the parent level of the location.
