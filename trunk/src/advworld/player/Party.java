@@ -90,17 +90,23 @@ public class Party {
 	 * @param loc
 	 */
 	public void setLocation(Location loc){
-		Game.DEBUG = true;
-		/*
-		Utility.debug("setting location");
-		Utility.debug("new location's children - " + loc.getChildren().toString());
-		if(loc.getChildren().size() == 1){
-			Utility.debug("only 1 child");
-			location = loc.getChild();
+		Utility.debug("loc name " + loc.getName() + " exits size " + loc.exits().size() + "exits " + loc.exits().toString());
+		if(loc.exits().size() == 2){
+			Utility.debug("loc.exits().get(0).getTo().getName is " +loc.exits().get(0).getTo().getName());
+			Utility.debug("loc.exits().get(1).getTo().getName is " +loc.exits().get(1).getTo().getName());
+			if(loc.exits().get(0).getTo().getName().equals(location.getName())){
+				Utility.debug(" location = loc.exits().get(1).getTo()");
+				location = loc.exits().get(1).getTo();
+				return;
+			} else if (loc.exits().get(1).getTo().getName().equals(location.getName())){
+				Utility.debug(" location = loc.exits().get(0).getTo()");
+				location = loc.exits().get(0).getTo();
+				return;
+			}
+		} else {
+			Utility.debug("location = loc");
+			location = loc;
 		}
-		*/
-		location = loc;
-		Game.DEBUG = false;
 	}
 	/**
 	 * changes the player p to the a new position
