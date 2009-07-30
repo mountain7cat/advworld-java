@@ -135,20 +135,6 @@ public class Location {
 	}
 	
 	/**
-	 * returns the first child in myChildren
-	 * @return
-	 */
-	public Location getChild(){
-		Set<String> keys = myChildren.keySet();
-		Iterator<String> iter = keys.iterator();
-		String first = null;
-		if(iter.hasNext()){
-			first = iter.next();
-		}
-		return myChildren.get(first);
-	}
-	
-	/**
 	 * set this location's parent through adding itself to parent's children
 	 * list
 	 * @param parent
