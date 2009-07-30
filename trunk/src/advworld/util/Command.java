@@ -49,8 +49,9 @@ public abstract class Command {
 					p = paths.next();
 					String out = "Out of " + p.getFrom().getName();
 					String out1 = "out of " + p.getFrom().getName();
-					if(destination.equals("out") || out.equals(destination) || out1.equals(destination) ){
-						System.out.println("You left " + Game.theParty.getlocation().getTypeName());
+					if(Game.theParty.getlocation().getParent().exits().size() != 0 &&
+							(destination.equals("out") || out.equals(destination) || out1.equals(destination)) ){
+						Utility.println("You moved from " + p.getFrom().getName() + " to " + Game.theParty.getlocation().getParent().getName() + ".");
 						Game.theParty.setLocation(Game.theParty.getlocation().getParent());
 						Game.theParty.getlocation().description();
 						return;
