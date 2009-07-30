@@ -1,25 +1,48 @@
-LOCATION Earth World
-LOCATION NorthAmerica Continent
-LOCATION Usa Country
-LOCATION Ca State
+LOCATION USA Country
+LOCATION California State
 LOCATION Berkeley City
+LOCATION Alameda City
 LOCATION SouthSide Town
+LOCATION NorthSide Town
 LOCATION Royston Building
+LOCATION Funston Building
+LOCATION Room10A Room
+LOCATION Room7B Room
+LOCATION Room204 Room
 LOCATION Room306 Room
 LOCATION Hall Room
+LOCATION Hall1 Room
+LOCATION Soda Building
+LOCATION Lounge Room
+LOCATION Lab Room
+LOCATION Soda Room PARENT NorthSide CHILDREN Lounge Lab
+LOCATION NorthSide Town PARENT Berkeley CHILDREN Soda
+LOCATION Lounge Room PARENT Soda
+LOCATION Lab Room PARENT Soda
+LOCATION Tims Room PARENT Hall1
+LOCATION Sams Room PARENT Hall1
 LOCATION Aarons Room PARENT Hall
 LOCATION Derricks Room PARENT Hall [start]
 LOCATION Eusebius Room PARENT Hall
 LOCATION Bathroom Room PARENT Hall
 LOCATION Kitchen Room PARENT Hall
-LOCATION NorthAmerica Continent PARENT Earth CHILDREN Usa
-LOCATION Usa Country PARENT NorthAmerica CHILDREN Ca
-LOCATION Ca State PARENT Usa CHILDREN Berkeley
-LOCATION Berkeley City PARENT Ca CHILDREN SouthSide
-LOCATION SouthSide Town PARENT Berkeley CHILDREN Royston
-LOCATION Royston Building PARENT SouthSide CHILDREN Room306
+LOCATION Berkeley City PARENT California CHILDREN SouthSide NorthSide
+LOCATION Alameda City PARENT California
+LOCATION California State PARENT USA CHILDREN Berkeley Alameda
+LOCATION SouthSide Town PARENT Berkeley CHILDREN Royston Funston
+LOCATION Royston Building PARENT SouthSide CHILDREN Room306 Room204
+LOCATION Funston Building PARENT SouthSide CHILDREN Room10A Room7B
 LOCATION Room306 Room PARENT Royston CHILDREN Hall
+LOCATION Room204 Room PARENT Royston CHILDREN Hall1
 LOCATION Hall Room PARENT Room306 CHILDREN Aarons Derricks Eusebius Bathroom Kitchen
+LOCATION Hall1 Room PARENT Room204 CHILDREN Tims Sams
+CONNECTION Room204 Hall1
+CONNECTION Hall1 Tims
+CONNECTION Hall1 Sams
+CONNECTION Room204 Royston
+CONNECTION Funston SouthSide
+CONNECTION Funston Room10A
+CONNECTION Funston Room7B
 CONNECTION Room306 Hall
 CONNECTION Hall Aarons
 CONNECTION Hall Derricks
@@ -28,9 +51,12 @@ CONNECTION Hall Bathroom
 CONNECTION Hall Kitchen
 CONNECTION Room306 Royston
 CONNECTION Royston SouthSide
+CONNECTION SouthSide NorthSide
+CONNECTION NorthSide Berkeley
+CONNECTION NorthSide Soda
+CONNECTION Soda	Lounge
+CONNECTION Soda Lab
 CONNECTION SouthSide Berkeley
-CONNECTION Berkeley Ca
-CONNECTION Ca Usa
-CONNECTION Usa NorthAmerica
-CONNECTION NorthAmerica Earth
-OBJECT
+CONNECTION Berkeley California
+CONNECTION Alameda California
+CONNECTION California USA
