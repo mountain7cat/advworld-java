@@ -2,7 +2,7 @@ package advworld.objects;
 
 import advworld.level.*;
 
-public abstract class Thing {
+public class Thing {
 	
 	protected String myName;
 	protected Location myLocation;
@@ -11,13 +11,15 @@ public abstract class Thing {
 	protected boolean pickUpAble;
 	protected boolean equip_able;
 	
-	protected String type;
+	protected String type = "Thing";
 	
-	public Thing(String name, Location loc){
+	public Thing(String name, Location loc, String desc){
 		myName = name;
 		myLocation = loc;
 		loc.addObject(this);
+		myDescription = desc;
 		pickUpAble = false;
+		equip_able = false;
 	}
 	
 	public String getName(){

@@ -39,41 +39,41 @@ public abstract class Command {
 		} else if(arg.length == 2){
 			Path p;
 			String destination = arg[1];
-			Utility.debug(Game.theParty.getlocation().getName());
-			Iterator<Path> paths = Game.theParty.getlocation().exits().iterator();
-			if(Game.theParty.getlocation().getName().equals(destination)){
+			Utility.debug(Game.theParty.getLocation().getName());
+			Iterator<Path> paths = Game.theParty.getLocation().exits().iterator();
+			if(Game.theParty.getLocation().getName().equals(destination)){
 				Utility.println("You are already at "+destination);
-				Game.theParty.getlocation().description();
+				Game.theParty.getLocation().description();
 			} else {
 				while(paths.hasNext()){
 					p = paths.next();
 					String out = "Out of " + p.getFrom().getName();
 					String out1 = "out of " + p.getFrom().getName();
-					if(Game.theParty.getlocation().getParent().exits().size() != 0 &&
+					if(Game.theParty.getLocation().getParent().exits().size() != 0 &&
 							(destination.equals("out") || out.equals(destination) || out1.equals(destination)) ){
-						Utility.println("You moved from " + p.getFrom().getName() + " to " + Game.theParty.getlocation().getParent().getName() + ".");
-						Game.theParty.setLocation(Game.theParty.getlocation().getParent());
-						Game.theParty.getlocation().description();
+						Utility.println("You moved from " + p.getFrom().getName() + " to " + Game.theParty.getLocation().getParent().getName() + ".");
+						Game.theParty.setLocation(Game.theParty.getLocation().getParent());
+						Game.theParty.getLocation().description();
 						return;
 					} else if(p.getTo().getName().equals(destination) || p.getTo().getTypeName().equals(destination)){
-						if(!p.getFrom().getName().equals(Game.theParty.getlocation().getName())){
+						if(!p.getFrom().getName().equals(Game.theParty.getLocation().getName())){
 							//shouldn't hit this case, where a path's from is not the current location
 							Utility.debug("GO function - Malformed path: FIX IT!!!");
 							return;
 						} else if (p.isLocked()){
 							System.out.println(p.getTo().lockedDescription());
-							Game.theParty.getlocation().description();
+							Game.theParty.getLocation().description();
 							return;
 						}
 						//perform moving function
 						Game.theParty.setLocation(p.getTo());
 						Utility.println("You moved from " + p.getFrom().getName() + " to " + p.getTo().getName() + ".");
-						Game.theParty.getlocation().description();
+						Game.theParty.getLocation().description();
 						return;
 					}
 				}
 				Utility.println(destination + " is not an exit.");
-				Game.theParty.getlocation().description();
+				Game.theParty.getLocation().description();
 			}
 		} else {
 			System.out.println("Too many arguments.");
@@ -90,16 +90,16 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Attack who?");
 		} else {
-			Iterator<Monster> iter = Game.theParty.getlocation().getMyMonsters().iterator();
+			Iterator<Monster> iter = Game.theParty.getLocation().getMyMonsters().iterator();
 			String target = arg[1];
 			while(iter.hasNext()){
 				Monster mon = (Monster) iter.next();
 				if(target.equals(mon.getName()) || target.equals(mon.getDescription())){
-					Game.theParty.getleader().attack(mon);
+					Game.theParty.getLeader().attack(mon);
 					return;
 				}
 			}
-			System.out.println("There is no " + target +" in this " + Game.theParty.getlocation().getType() + ".");
+			System.out.println("There is no " + target +" in this " + Game.theParty.getLocation().getType() + ".");
 			return;
 		}
 	}
@@ -115,7 +115,7 @@ public abstract class Command {
 				}
 			}
 		} else {
-			Iterator<Monster> iter = Game.theParty.getlocation().getMyMonsters().iterator();
+			Iterator<Monster> iter = Game.theParty.getLocation().getMyMonsters().iterator();
 			String target = arg[1];
 			while(iter.hasNext()){
 				Monster mon = iter.next();
@@ -124,7 +124,7 @@ public abstract class Command {
 					return;
 				}
 			}
-			System.out.println("There is no " + target + " in this " + Game.theParty.getlocation().getType() + ".");
+			System.out.println("There is no " + target + " in this " + Game.theParty.getLocation().getType() + ".");
 			return;
 		}
 	}	
@@ -170,11 +170,11 @@ public abstract class Command {
 		Game.DEBUG = true;
 		Utility.debug("look called" + arg.length);
 		if(arg.length == 1){
-			Game.theParty.getlocation().description();
-			Game.theParty.getlocation().listItems();
-			System.out.println("");
-			Game.theParty.getlocation().listMonsters();
-			System.out.println("");
+			Game.theParty.getLocation().description();
+			if(Game.theParty.getLocation().hasItems())
+				Game.theParty.getLocation().listItems();
+			if(Game.theParty.getLocation().hasMonsters())
+				Game.theParty.getLocation().listMonsters();
 		} else {
 			Utility.debug(arg[0]);
 			Utility.debug(arg[1]);
@@ -182,7 +182,7 @@ public abstract class Command {
 			if(tokens[0].equals("at") && tokens.length == 1){
 				System.out.println("Look at what?");
 			} else if(tokens[0].equals("at") && tokens[1].length() > 0){
-				Iterator<Thing> iter = Game.theParty.getlocation().getMyObjects().iterator();
+				Iterator<Thing> iter = Game.theParty.getLocation().getMyObjects().iterator();
 				String name = tokens[1];
 				Utility.debug(name);
 				Game.DEBUG = false;
@@ -195,7 +195,7 @@ public abstract class Command {
 						return;
 					}
 				}
-				System.out.println(name +" is not in this " + Game.theParty.getlocation().getType() + ".");
+				System.out.println(name +" is not in this " + Game.theParty.getLocation().getType() + ".");
 				return;
 			} else {
 				System.out.println("Incorrect Command");
@@ -207,7 +207,7 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Read what?");
 		} else if(arg.length > 1){
-			Iterator<Thing> iter = Game.theParty.getleader().getInventory().iterator();
+			Iterator<Thing> iter = Game.theParty.getLeader().getInventory().iterator();
 			String title = arg[1];
 			while(iter.hasNext()){
 				Thing obj = (Thing)iter.next();
@@ -235,14 +235,14 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Take what?");
 		} else if(arg.length > 1){
-			Iterator<Thing> iter = Game.theParty.getlocation().getMyObjects().iterator();
+			Iterator<Thing> iter = Game.theParty.getLocation().getMyObjects().iterator();
 			String objName = arg[1];
 			while(iter.hasNext()){
 				Thing obj = (Thing)iter.next();
 				if(obj.getName().equals(objName)){
 					if(obj.isPickUpAble()){
-						Game.theParty.getleader().addItem(obj);
-						Game.theParty.getlocation().removeObject(obj);
+						Game.theParty.getLeader().addItem(obj);
+						Game.theParty.getLocation().removeObject(obj);
 						return;
 					} else {
 						System.out.println("You can not pick up "  + objName + ".");
@@ -250,7 +250,7 @@ public abstract class Command {
 					}
 				}
 			}
-			System.out.println(objName + " is not in this " + Game.theParty.getlocation() + ".");
+			System.out.println(objName + " is not in this " + Game.theParty.getLocation() + ".");
 			return;
 		} else {
 			System.out.println("Incorrect command.");
@@ -259,7 +259,7 @@ public abstract class Command {
 	
 	private static void inventory(String arg[]){
 		if(arg.length == 1){
-			Iterator<Thing> iter = Game.theParty.getleader().getInventory().iterator();
+			Iterator<Thing> iter = Game.theParty.getLeader().getInventory().iterator();
 			if(!iter.hasNext()){
 				System.out.println("Inventory: ");
 			} else {
@@ -280,14 +280,14 @@ public abstract class Command {
 		if(arg.length == 1){
 			System.out.println("Drop what?");
 		} else if(arg.length > 1){
-			Iterator<Thing> iter = Game.theParty.getleader().getInventory().iterator();
+			Iterator<Thing> iter = Game.theParty.getLeader().getInventory().iterator();
 			String objName = arg[1];
 			while(iter.hasNext()){
 
 				Thing obj = (Thing)iter.next();
 				if(obj.getName().equals(objName)){
-					Game.theParty.getleader().removeItem(obj);
-					Game.theParty.getlocation().addObject(obj);
+					Game.theParty.getLeader().removeItem(obj);
+					Game.theParty.getLocation().addObject(obj);
 					System.out.println("You dropped " + objName + " on the ground.");
 					return;
 				}

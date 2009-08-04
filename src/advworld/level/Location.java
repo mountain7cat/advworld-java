@@ -228,6 +228,7 @@ public class Location {
 			Thing obj = (Thing) iter.next();
 			System.out.print(" " + obj.getName());
 		}
+		System.out.println("");
 	}
 	
 	public void addMonster(Monster mon){
@@ -245,5 +246,16 @@ public class Location {
 			Monster mon = (Monster) iter.next();
 			System.out.print(" " + mon.getDescription() + " ||");
 		}
+		System.out.println("");
 	}
+	
+	public boolean hasMonsters(){
+		return !myMonsters.isEmpty();
+	}
+	
+	public boolean hasItems(){
+		return !myObjects.isEmpty();
+	}
+	
+	
 }

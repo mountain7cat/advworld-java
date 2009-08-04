@@ -92,7 +92,7 @@ public class Utility {
 			}
 
 		} catch (Exception e) { //generic conversion to advworld exception class
-			throw new AdvworldException("Exception in intializing world: "+e.getMessage());
+			throw new AdvworldException("Exception in intializing world: "+e.toString());
 		}
 		return hm;
 	}
@@ -170,10 +170,16 @@ public class Utility {
 	public static void setupObject(HashMap<String,Location> hm,String line) throws ClassNotFoundException, IllegalArgumentException, SecurityException, InstantiationException, IllegalAccessException, InvocationTargetException, NoSuchMethodException{
 		debug("OBJECT being initialized...");
 		String[] tokens = line.split("\\s");
+		debug("1");
 		String objectName = tokens[1], objectType = tokens[2], roomAssoc = tokens[3];
+		debug(objectName +","+objectType+","+roomAssoc);
+		debug("2:"+classPackages[OBJECT]+objectType);
 		Class<?> clas = Class.forName(classPackages[OBJECT]+objectType);
+		debug("3");
+		clas.getConstructor(String.class, Location.class);
+		debug("3.5");
 		Thing o = (Thing)(clas.getConstructor(String.class, Location.class).newInstance(objectName,hm.get(roomAssoc)));
-		
+		debug("4");
 	}
 	public static void setupNPC(HashMap<String,Location> hm,String line){
 		debug("NPC being initialized...");
