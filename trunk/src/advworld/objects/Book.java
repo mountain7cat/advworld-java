@@ -10,21 +10,17 @@ public class Book extends Thing{
 	private String contents;
 	
 	public Book(String name, Location loc, String desc){
-		super(name, loc);
-		this.setDescription(desc);
+		super(name, loc, desc);
 		pickUpAble = true;
-		equip_able = false;
 		type = "Book";
 		contents = "Empty";
 	}
 	
 	public Book(String name, Location loc, String desc, String contents){
-		super(name,loc);
-		this.setDescription(desc);
+		super(name,loc, desc);
 		this.contents = contents;
 		pickUpAble = true;
 		type = "Book";
-		equip_able = false;
 	}
 	
 	public String getContents(){

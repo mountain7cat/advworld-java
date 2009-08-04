@@ -14,7 +14,7 @@ public class Game {
 	 * Private parameters for the game
 	 */
 	public static String TOPLEVEL_WORLD = "topLevelWorld";
-	public static boolean DEBUG = false;
+	public static boolean DEBUG = true;
 	public static Party theParty;
 	
 	public static Location startlevel;
@@ -137,7 +137,7 @@ public class Game {
 	public static void gameover(){
 		System.out.println("GAME OVER!");
 		System.out.println("FINAL STATUS");
-		Game.theParty.getleader().status();
+		Game.theParty.getLeader().status();
 		System.out.println("\n THANKS FOR PLAYING!");
 		System.exit(0);
 	}

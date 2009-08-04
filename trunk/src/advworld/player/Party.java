@@ -66,7 +66,7 @@ public class Party {
 	 * returns the party leader
 	 * @return
 	 */
-	public Player getleader() {
+	public Player getLeader() {
 		return actives[0];
 	}
 	
@@ -74,7 +74,7 @@ public class Party {
 	 * returns the party's location
 	 * @return
 	 */
-	public Location getlocation(){
+	public Location getLocation(){
 		return location;
 	}
 	

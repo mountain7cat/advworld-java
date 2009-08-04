@@ -60,3 +60,4 @@ CONNECTION SouthSide Berkeley
 CONNECTION Berkeley California
 CONNECTION Alameda California
 CONNECTION California USA
+OBJECT Science Book Hall
