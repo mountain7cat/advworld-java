@@ -90,6 +90,8 @@ public class Party {
 	 * @param loc
 	 */
 	public void setLocation(Location loc){
+		location = loc;
+		/*
 		Utility.debug("loc name " + loc.getName() + " exits size " + loc.exits().size() + "exits " + loc.exits().toString());
 		if(loc.exits().size() == 2){
 			Utility.debug("loc.exits().get(0).getTo().getName is " +loc.exits().get(0).getTo().getName());
@@ -107,6 +109,7 @@ public class Party {
 			Utility.debug("location = loc");
 			location = loc;
 		}
+		*/
 	}
 	/**
 	 * changes the player p to the a new position
