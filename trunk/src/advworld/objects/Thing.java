@@ -13,6 +13,15 @@ public class Thing {
 	
 	protected String type = "Thing";
 	
+	public Thing(String name, Location loc){
+		myName = name;
+		myLocation = loc;
+		loc.addObject(this);
+		myDescription = "No description";
+		pickUpAble = false;
+		equip_able = false;
+	}
+	
 	public Thing(String name, Location loc, String desc){
 		myName = name;
 		myLocation = loc;

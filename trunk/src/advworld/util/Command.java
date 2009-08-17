@@ -167,14 +167,15 @@ public abstract class Command {
 	}
 	
 	private static void look(String arg[]){
-		Game.DEBUG = true;
+		//Game.DEBUG = true;
 		Utility.debug("look called" + arg.length);
+		Location loc = Game.theParty.getLocation();
 		if(arg.length == 1){
-			Game.theParty.getLocation().description();
-			if(Game.theParty.getLocation().hasItems())
-				Game.theParty.getLocation().listItems();
-			if(Game.theParty.getLocation().hasMonsters())
-				Game.theParty.getLocation().listMonsters();
+			loc.description();
+			if(loc.hasItems())
+				loc.listItems();
+			if(loc.hasMonsters())
+				loc.listMonsters();
 		} else {
 			Utility.debug(arg[0]);
 			Utility.debug(arg[1]);
@@ -182,10 +183,12 @@ public abstract class Command {
 			if(tokens[0].equals("at") && tokens.length == 1){
 				System.out.println("Look at what?");
 			} else if(tokens[0].equals("at") && tokens[1].length() > 0){
-				Iterator<Thing> iter = Game.theParty.getLocation().getMyObjects().iterator();
+				Iterator<Thing> inventoryIter = Game.theParty.getLeader().getInventory().iterator();
+				Iterator<Thing> locationIter = Game.theParty.getLocation().getMyObjects().iterator();
 				String name = tokens[1];
 				Utility.debug(name);
-				Game.DEBUG = false;
+				//Game.DEBUG = false;
+				Iterator<Thing> iter = inventoryIter;
 				while(iter.hasNext()){
 					Thing obj = (Thing)iter.next();
 					if(obj.getName().equals(name)){
@@ -195,7 +198,17 @@ public abstract class Command {
 						return;
 					}
 				}
-				System.out.println(name +" is not in this " + Game.theParty.getLocation().getType() + ".");
+				iter = locationIter;
+				while(iter.hasNext()){
+					Thing obj = (Thing)iter.next();
+					if(obj.getName().equals(name)){
+						System.out.println("~Name: " + obj.getName());
+						System.out.println("~Type: " + obj.getType());
+						System.out.println("~Description: " + obj.getDescription());
+						return;
+					}
+				}
+				System.out.println(name +" is not in this " + Game.theParty.getLocation().getType() + " or in the inventory.");
 				return;
 			} else {
 				System.out.println("Incorrect Command");
