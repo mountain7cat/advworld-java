@@ -1,0 +1,1 @@
+So this is a fun project done by bored Berkeley EECS students (even when they shouldn't be bored with all the homework they always have to do...) This project was initially done as part of a training exercise for CS61C students in language C, but we posit that this adventure world would be more extensible in Java rather than C thanks to object-oriented programming style.
